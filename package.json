@@ -1,0 +1,42 @@
+{
+  "name": "yagni-dom",
+  "version": "0.0.1",
+  "description": "Yet another functional library (DOM API related)",
+  "main": "dist/yagni-dom.cjs.js",
+  "module": "dist/yagni-dom.esm.js",
+  "scripts": {
+    "test": "mocha",
+    "pretest": "npm run build",
+    "build": "rollup -c",
+    "prebuild": "rm -rf dist/*",
+    "prepublishOnly": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ysegorov/yagni-dom.git"
+  },
+  "keywords": [
+    "frontend",
+    "functional",
+    "stateless",
+    "cleanjs"
+  ],
+  "author": "Yuri Egorov <ysegorov@gmail.com> (https://ysegorov.github.io/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ysegorov/yagni-dom/issues"
+  },
+  "homepage": "https://github.com/ysegorov/yagni-dom#readme",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "eslint": "^4.15.0",
+    "eslint-plugin-better": "^0.1.5",
+    "eslint-plugin-fp": "^2.3.0",
+    "eslint-plugin-import": "^2.8.0",
+    "mocha": "^4.1.0",
+    "rollup": "^0.53.4",
+    "rollup-plugin-buble": "^0.18.0",
+    "rollup-plugin-eslint": "^4.0.0",
+    "yagni": "^0.1.0"
+  }
+}
