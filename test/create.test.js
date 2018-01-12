@@ -27,10 +27,28 @@ describe('createElementNS()', function () {
     expect(svg).to.be.a('svgsvgelement');
     expect(svg).to.have.property('tagName');
     expect(svg.tagName.toLowerCase()).to.equal('svg');
+    expect(svg.namespaceURI).to.equal('http://www.w3.org/2000/svg');
 
   });
 
 });
+
+
+describe('createSVGElement()', function () {
+
+  it('returnes created namespased svg element', function () {
+
+    const line = dom.createSVGElement('line');
+
+    expect(line).to.be.a('svgelement');
+    expect(line).to.have.property('tagName');
+    expect(line.tagName.toLowerCase()).to.equal('line');
+    expect(line.namespaceURI).to.equal('http://www.w3.org/2000/svg');
+
+  });
+
+});
+
 
 
 describe('createText()', function () {

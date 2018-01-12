@@ -12,6 +12,8 @@ export function createElementNS(namespace) {
   };
 }
 
+export const createSVGElement = createElementNS('http://www.w3.org/2000/svg');
+
 export function createText(text) {
   return doc.createTextNode(text);
 }
