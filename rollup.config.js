@@ -9,6 +9,9 @@ export default [
       {file: pkg.main, format: 'cjs'},
       {file: pkg.module, format: 'es'}
     ],
+    external: [
+      'yagni'
+    ],
     plugins: [
       eslint({throwOnError: true})
     ]
