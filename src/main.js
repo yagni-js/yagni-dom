@@ -6,3 +6,4 @@ export * from './attrs.js';
 export * from './props.js';
 export * from './dataset.js';
 export * from './query.js';
+export * from './tree.js';
