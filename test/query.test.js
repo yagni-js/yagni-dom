@@ -64,6 +64,7 @@ describe('matches()', function () {
 describe('closest()', function () {
 
   // FIXME jsdom does not support Element.closest yet
+  // https://github.com/tmpvar/jsdom/pull/1951
   it.skip('returns proper closest element or null', function () {
 
     const div = dom.createElement('div');
