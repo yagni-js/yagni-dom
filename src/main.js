@@ -7,3 +7,4 @@ export * from './props.js';
 export * from './dataset.js';
 export * from './query.js';
 export * from './tree.js';
+export * from './mutate.js';
