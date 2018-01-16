@@ -4,7 +4,7 @@ import { filter, pick, pipe, toArray } from 'yagni';
 import { matches } from './query.js';
 
 
-export const parent = pick('parentNode');
+export const parent = pick('parentElement');
 
 export function children(el) {
   return toArray(el.children);
@@ -22,3 +22,10 @@ export function siblings(selector) {
   };
 }
 
+export function next(el) {
+  return el.nextElementSibling;
+}
+
+export function prev(el) {
+  return el.previousElementSibling;
+}

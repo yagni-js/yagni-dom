@@ -81,3 +81,53 @@ describe('siblings()', function () {
   });
 
 });
+
+
+describe('next()', function () {
+
+  it('should return next element or null, skipping text nodes', function () {
+
+    const p = dom.createElement('p');
+    const foo = dom.createText('Foo');
+    const baz = dom.createText('Baz');
+    const bar = dom.createText('Bar');
+    const a = dom.createElement('a');
+    const span = dom.createElement('span');
+
+    p.appendChild(foo);
+    p.appendChild(a);
+    p.appendChild(baz);
+    p.appendChild(span);
+    p.appendChild(bar);
+
+    expect(dom.next(a)).to.equal(span);
+    expect(dom.next(span)).to.be.null;
+
+  });
+
+});
+
+
+describe('prev()', function () {
+
+  it('should return previous element or null, skipping text nodes', function () {
+
+    const p = dom.createElement('p');
+    const foo = dom.createText('Foo');
+    const baz = dom.createText('Baz');
+    const bar = dom.createText('Bar');
+    const a = dom.createElement('a');
+    const span = dom.createElement('span');
+
+    p.appendChild(foo);
+    p.appendChild(a);
+    p.appendChild(baz);
+    p.appendChild(span);
+    p.appendChild(bar);
+
+    expect(dom.prev(a)).to.be.null;
+    expect(dom.prev(span)).to.equal(a);
+
+  });
+
+});
