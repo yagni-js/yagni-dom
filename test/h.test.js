@@ -42,3 +42,24 @@ describe('h()', function () {
   });
 
 });
+
+
+describe('hSVG()', function () {
+
+  it('returns proper tag spec as object', function () {
+
+    const attrs = {};
+    const props = {};
+    const children = [];
+    const svg = dom.hSVG('svg', attrs, props, children);
+
+    expect(svg).to.be.an('object');
+    expect(svg).to.have.property('isSVG', true);
+    expect(svg).to.have.property('tagName', 'svg');
+    expect(svg).to.have.property('attrs', attrs);
+    expect(svg).to.have.property('props', props);
+    expect(svg).to.have.property('children');
+
+  });
+
+});
