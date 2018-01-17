@@ -63,3 +63,16 @@ describe('hSVG()', function () {
   });
 
 });
+
+
+describe('hToDOM()', function () {
+
+  it('should return text node if string is passed in');
+
+  it('should return div node if div spec is passed in');
+
+  it('should return svg node if svg spec is passed in');
+
+  it('should recursively create children nodes');
+
+});
