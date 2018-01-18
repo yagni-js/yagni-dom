@@ -1,5 +1,5 @@
 
-import { flatten, ifElse, isString, pipe } from 'yagni';
+import { flatten, ifElse, isString, pipe, reduce } from 'yagni';
 
 import { setAttrs } from './attrs.js';
 import { createElement, createSVGElement, createText } from './create.js';
@@ -25,12 +25,14 @@ export function hSVG(tagName, attrs, props, children) {
   };
 }
 
-function createChildren(arr) {
-  return function (el) {
-    // TODO
-    return [];
-  };
+function createChild(target, spec) {
+  const el = hToDOM(spec);
+  // NB. side effect - unused assignment
+  const child = target.appendChild(el);
+  return target
 }
+
+const createChildren = reduce(createChild);
 
 function createEl(spec) {
   const creator = spec.isSVG ? createSVGElement : createElement;
