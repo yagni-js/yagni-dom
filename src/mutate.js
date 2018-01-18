@@ -1,7 +1,7 @@
 
-import { callMethod, identity, ifElse, isNil, pick, pipe, tap, transform } from 'yagni';
+import { callMethod, identity, ifElse, isNil, map, pick, pipe, tap, transform } from 'yagni';
 
-import { parent, next } from './tree.js';
+import { children, parent, next } from './tree.js';
 
 
 export function append(el) {
@@ -10,6 +10,13 @@ export function append(el) {
       return target.appendChild(el);
     }
   );
+}
+
+export function appendTo(target) {
+  return function (el) {
+    const child = target.appendChild(el);
+    return parent(child);
+  };
 }
 
 export function appendAfter(el) {
@@ -36,3 +43,10 @@ export const remove = pipe([
     ])
   )
 ]);
+
+export const removeChildren = tap(
+  pipe([
+    children,
+    map(remove)
+  ])
+);

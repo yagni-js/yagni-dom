@@ -25,6 +25,28 @@ describe('append()', function () {
 });
 
 
+describe('appendTo()', function () {
+
+  it('should append element to target element', function () {
+
+    const p = dom.createElement('p');
+    const span = dom.createElement('span');
+
+    const appendToP = dom.appendTo(p);
+
+    expect(appendToP).to.be.a('function');
+    expect(dom.parent(span)).to.be.null;
+
+    const ret = appendToP(span);
+
+    expect(ret).to.equal(p);
+    expect(dom.parent(span)).to.equal(p);
+
+  });
+
+});
+
+
 describe('appendAfter()', function () {
 
   it('should append element after target element', function () {
@@ -78,6 +100,38 @@ describe('remove()', function () {
     expect(ret).to.equal(ul);
     expect(dom.parent(li)).to.be.null;
     expect(dom.children(ul)).to.deep.equal([]);
+
+  });
+
+});
+
+
+describe('removeChildren()', function () {
+
+  it('should remove all children', function () {
+
+    const ul = dom.createElement('ul');
+    const li1 = dom.createElement('li');
+    const li2 = dom.createElement('li');
+    const li3 = dom.createElement('li');
+
+    ul.appendChild(li1);
+    ul.appendChild(li2);
+    ul.appendChild(li3);
+
+    expect(dom.parent(li1)).to.equal(ul);
+    expect(dom.parent(li2)).to.equal(ul);
+    expect(dom.parent(li3)).to.equal(ul);
+
+    const ret = dom.removeChildren(ul);
+
+    expect(ret).to.equal(ul);
+
+    expect(ret.firstChild).to.be.null;
+
+    expect(dom.parent(li1)).to.be.null;
+    expect(dom.parent(li2)).to.be.null;
+    expect(dom.parent(li3)).to.be.null;
 
   });
 
