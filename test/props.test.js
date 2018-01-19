@@ -70,3 +70,20 @@ describe('setProps()', function () {
   });
 
 });
+
+
+describe('textContent()', function () {
+
+  it('should return textContent property value', function () {
+
+    const div = dom.createElement('div');
+    const text = dom.createText('Foo');
+
+    div.appendChild(text);
+
+    expect(div.textContent).to.equal('Foo');
+    expect(dom.textContent(div)).to.equal('Foo');
+
+  });
+
+});

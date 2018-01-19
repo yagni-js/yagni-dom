@@ -25,3 +25,5 @@ export function setProps(props) {
   ]);
   return ops(props);
 }
+
+export const textContent = getProp('textContent');
