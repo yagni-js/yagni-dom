@@ -140,3 +140,117 @@ describe('hToDOM()', function () {
   });
 
 });
+
+
+describe('render()', function () {
+
+  it('should return function to be called', function () {
+
+    const div = dom.createElement('div');
+    const renderer = dom.render(div);
+
+    expect(renderer).to.be.a('function');
+
+  });
+
+  it('should render spec by creating dom tree from spec and appending it to target', function () {
+
+    const div = dom.createElement('div');
+    const renderer = dom.render(div);
+
+    const li1 = dom.h('li', {}, {}, [dom.h('span', {}, {}, ['Foo'])]);
+    const li2 = dom.h('li', {}, {}, [dom.h('span', {}, {}, ['Baz'])]);
+    const li3 = dom.h('li', {}, {}, [dom.h('span', {}, {}, ['Bar'])]);
+    const ul = dom.h('ul', {}, {}, [li1, li2, li3]);
+
+    expect(dom.textContent(div)).to.equal('');
+
+    const ret = renderer(ul);
+
+    expect(ret).to.equal(div);
+    expect(dom.textContent(div)).to.equal('FooBazBar');
+    // TODO add more tests
+
+  });
+
+});
+
+
+describe('renderAfter()', function () {
+
+  it('should return function to be called', function () {
+
+    const div = dom.createElement('div');
+    const renderer = dom.renderAfter(div);
+
+    expect(renderer).to.be.a('function');
+
+  });
+
+  it('should render spec by creating dom tree from spec and appending it after the target', function () {
+
+    const div = dom.createElement('div');
+    const renderer = dom.render(div);
+
+    const li1 = dom.h('li', {}, {}, [dom.h('span', {}, {}, ['Foo'])]);
+    const li2 = dom.h('li', {}, {}, [dom.h('span', {}, {}, ['Baz'])]);
+    const li3 = dom.h('li', {}, {}, [dom.h('span', {}, {}, ['Bar'])]);
+    const ul = dom.h('ul', {}, {}, [li1, li3]);
+
+    expect(dom.textContent(div)).to.equal('');
+
+    const ret = renderer(ul);
+
+    expect(ret).to.equal(div);
+
+    const li1El = div.firstChild.firstChild;
+
+    expect(dom.textContent(li1El)).to.equal('Foo');
+    expect(dom.textContent(div)).to.equal('FooBar');
+
+    const appender = dom.renderAfter(li1El);
+
+    const ret2 = appender(li2);
+
+    expect(ret2).to.equal(li1El);
+    expect(dom.textContent(div)).to.equal('FooBazBar');
+
+  });
+
+});
+
+
+describe('renderC()', function () {
+
+  it('should return function to be called', function () {
+
+    const div = dom.createElement('div');
+    const renderer = dom.renderC(div);
+
+    expect(renderer).to.be.a('function');
+
+  });
+
+  it('should render spec by clearing children nodes from target, creating dom tree from spec and appending it after the target', function () {
+
+    const div = dom.createElement('div');
+    const renderer = dom.renderC(div);
+
+    const p1 = dom.h('p', {}, {}, ['Foo']);
+    const p2 = dom.h('p', {}, {}, ['Baz']);
+
+    expect(dom.textContent(div)).to.equal('');
+
+    const ret1 = renderer(p1);
+
+    expect(ret1).to.equal(div);
+    expect(dom.textContent(div)).to.equal('Foo');
+
+    const ret2 = renderer(p2);
+
+    expect(ret2).to.equal(div);
+    expect(dom.textContent(div)).to.equal('Baz');
+
+  });
+
+});

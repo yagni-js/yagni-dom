@@ -4,6 +4,7 @@ import { flatten, ifElse, isString, pipe, reduce } from 'yagni';
 import { setAttrs } from './attrs.js';
 import { createElement, createSVGElement, createText } from './create.js';
 import { setProps } from './props.js';
+import { appendAfter, removeChildren } from './mutate.js';
 
 
 export function h(tagName, attrs, props, children) {
@@ -50,3 +51,22 @@ export const hToDOM = ifElse(
   createText,
   createEl
 );
+
+export function render(target) {
+  return function (spec) {
+    return createChild(target, spec);
+  };
+}
+
+export function renderAfter(target) {
+  return function (spec) {
+    const tree = hToDOM(spec);
+    return appendAfter(tree)(target);
+  };
+}
+
+export function renderC(target) {
+  return function (spec) {
+    return createChild(removeChildren(target), spec);
+  };
+}
