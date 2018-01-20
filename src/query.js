@@ -24,7 +24,7 @@ export function query(selector) {
   const byClass = byClassRe.test(selector);
 
   return function (el) {
-    return byId ? doc.getElementById(selector.subscr(1)) : toArray(
+    return byId ? doc.getElementById(selector.substr(1)) : toArray(
       byClass ? el.getElementsByClassName(selector.replace(/\./g, ' ').trim()) : el.querySelectorAll(selector));
   };
 }
