@@ -101,3 +101,25 @@ describe('closest()', function () {
   });
 
 });
+
+
+describe('query()', function () {
+
+  it('should return proper element by id');
+
+  it('should return proper elements by single class');
+
+  it('should return proper elements by multiple classes');
+
+  it('should return proper elements by tag name');
+
+  it('should return proper elements by attribute');
+
+});
+
+
+describe('queryFirst()', function () {
+
+  it('should return first found element');
+
+});
