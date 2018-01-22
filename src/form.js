@@ -1,5 +1,5 @@
 
-import {always, call, equals, fn2, ifElse, obj, pipe, reduce } from 'yagni';
+import {always, call, callMethod, equals, fn2, identity, ifElse, obj, pipe, reduce } from 'yagni';
 
 import { query } from './query.js';
 import { getProp, setProp } from './props.js';
@@ -67,3 +67,5 @@ export const setInputEnabled = setProp('disabled', false);
 
 export const setInputReadonly = setProp('readOnly', true);
 export const setInputEditable = setProp('readOnly', false);
+
+export const isInputValid = callMethod(identity, 'checkValidity');
