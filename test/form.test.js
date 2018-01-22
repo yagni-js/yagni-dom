@@ -155,3 +155,79 @@ describe('serializeForm()', function () {
   });
 
 });
+
+
+describe('setInputDisabled()', function () {
+
+  it('should make input disabled', function () {
+
+    const input = dom.h('input', {}, {disabled: false}, []);
+    const el = dom.hToDOM(input);
+
+    expect(el.disabled).to.be.false;
+
+    const ret = dom.setInputDisabled(el);
+
+    expect(ret).to.equal(el);
+    expect(ret.disabled).to.be.true;
+
+  });
+
+});
+
+
+describe('setInputEnabled()', function () {
+
+  it('should make input enabled', function () {
+
+    const input = dom.h('input', {}, {disabled: true}, []);
+    const el = dom.hToDOM(input);
+
+    expect(el.disabled).to.be.true;
+
+    const ret = dom.setInputEnabled(el);
+
+    expect(ret).to.equal(el);
+    expect(ret.disabled).to.be.false;
+
+  });
+
+});
+
+
+describe('setInputReadonly()', function () {
+
+  it('should make input readonly', function () {
+
+    const input = dom.h('input', {}, {}, []);
+    const el = dom.hToDOM(input);
+
+    expect(el.readOnly).to.be.false;
+
+    const ret = dom.setInputReadonly(el);
+
+    expect(ret).to.equal(el);
+    expect(ret.readOnly).to.be.true;
+
+  });
+
+});
+
+
+describe('setInputEditable()', function () {
+
+  it('should make input editable', function () {
+
+    const input = dom.h('input', {}, {readOnly: true}, []);
+    const el = dom.hToDOM(input);
+
+    expect(el.readOnly).to.be.true;
+
+    const ret = dom.setInputEditable(el);
+
+    expect(ret).to.equal(el);
+    expect(ret.readOnly).to.be.false;
+
+  });
+
+});

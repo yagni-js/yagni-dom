@@ -1,8 +1,8 @@
 
-import {always, call, callMethod, equals, fn2, identity, ifElse, isNil, obj, or, pipe, reduce } from 'yagni';
+import {always, call, equals, fn2, ifElse, obj, pipe, reduce } from 'yagni';
 
 import { query } from './query.js';
-import { getProp } from './props.js';
+import { getProp, setProp } from './props.js';
 
 
 const inputName = getProp('name');
@@ -61,3 +61,9 @@ export const serializeForm = pipe([
   query('input[name]'),
   call(reduce(serializeFormReducer), always({}))
 ]);
+
+export const setInputDisabled = setProp('disabled', true);
+export const setInputEnabled = setProp('disabled', false);
+
+export const setInputReadonly = setProp('readOnly', true);
+export const setInputEditable = setProp('readOnly', false);
