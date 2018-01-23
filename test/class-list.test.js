@@ -76,3 +76,30 @@ describe('toggleClass()', function () {
   });
 
 });
+
+
+describe('hasClass()', function () {
+
+  it('should return true if element has specified class', function () {
+
+    const div = dom.createElement('div');
+    const hasFoo = dom.hasClass('foo');
+
+    div.className = 'bar foo';
+
+    expect(hasFoo(div)).to.be.true;
+
+  });
+
+  it('should return false if element does not have specified class', function () {
+
+    const div = dom.createElement('div');
+    const hasFoo = dom.hasClass('foo');
+
+    div.className = 'bar';
+
+    expect(hasFoo(div)).to.be.false;
+
+  });
+
+});

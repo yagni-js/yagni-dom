@@ -16,3 +16,10 @@ function classListOp(method) {
 export const addClass = classListOp('add');
 export const removeClass = classListOp('remove');
 export const toggleClass = classListOp('toggle');
+
+export function hasClass(classname) {
+  return pipe([
+    pick('classList'),
+    callMethod(identity, 'contains', classname)
+  ]);
+}
