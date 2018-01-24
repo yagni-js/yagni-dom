@@ -136,3 +136,39 @@ describe('removeChildren()', function () {
   });
 
 });
+
+
+describe('replace()', function () {
+
+  it('should replace old element with new one', function () {
+
+    const ul = dom.createElement('ul');
+    const li1 = dom.createElement('li');
+    const li2 = dom.createElement('li');
+    const foo = dom.createText('foo');
+    const baz = dom.createText('baz');
+
+    const replaceLi1 = dom.replace(li1);
+
+    expect(replaceLi1).to.be.a('function');
+
+    li1.appendChild(foo);
+    ul.appendChild(li1);
+
+    li2.appendChild(baz);
+
+    expect(dom.parent(li1)).to.equal(ul);
+    expect(dom.textContent(ul)).to.equal('foo');
+    expect(dom.parent(li2)).to.be.null;
+
+    const ret = replaceLi1(li2);
+
+    expect(ret).to.equal(li2);
+
+    expect(dom.parent(ret)).to.equal(ul);
+    expect(dom.textContent(ul)).to.equal('baz');
+    expect(dom.parent(li1)).to.be.null;
+
+  });
+
+});

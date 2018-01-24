@@ -50,3 +50,11 @@ export const removeChildren = tap(
     map(remove)
   ])
 );
+
+export function replace(oldEl) {
+  return tap(
+    function (newEl) {
+      return parent(oldEl).replaceChild(newEl, oldEl);
+    }
+  );
+}
