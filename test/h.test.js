@@ -254,3 +254,40 @@ describe('renderC()', function () {
   });
 
 });
+
+
+describe('renderR()', function () {
+
+  it('should return function to be called', function () {
+
+    const div = dom.createElement('div');
+    const renderer = dom.renderR(div);
+
+    expect(renderer).to.be.a('function');
+
+  });
+
+  it('should render spec by replacing target', function () {
+
+    const ul = dom.createElement('ul');
+
+    const li1 = dom.h('li', {}, {}, ['Foo']);
+    const li2 = dom.h('li', {}, {}, ['Baz']);
+
+    const ret1 = dom.render(ul)(li1);
+
+    expect(ret1).to.equal(ul);
+    expect(dom.textContent(ul)).to.equal('Foo');
+
+    const child1 = dom.firstChild(ul);
+    const replaceLi1 = dom.renderR(child1);
+
+    const ret2 = replaceLi1(li2);
+
+    expect(dom.parent(child1)).to.be.null;
+    expect(dom.parent(ret2)).to.equal(ul);
+    expect(dom.textContent(ul)).to.equal('Baz');
+
+  });
+
+});
