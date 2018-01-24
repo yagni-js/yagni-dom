@@ -5,10 +5,15 @@ import { matches } from './query.js';
 
 
 export const parent = pick('parentElement');
+export const firstChild = pick('firstElementChild');
+export const lastChild = pick('lastElementChild');
+export const next = pick('nextElementSibling');
+export const prev = pick('previousElementSibling');
 
-export function children(el) {
-  return toArray(el.children);
-}
+export const children = pipe([
+  pick('children'),
+  toArray
+]);
 
 export function siblings(selector) {
   const match = matches(selector);
@@ -20,12 +25,4 @@ export function siblings(selector) {
       filter(matched)
     ])(el);
   };
-}
-
-export function next(el) {
-  return el.nextElementSibling;
-}
-
-export function prev(el) {
-  return el.previousElementSibling;
 }

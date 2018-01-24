@@ -131,3 +131,55 @@ describe('prev()', function () {
   });
 
 });
+
+
+describe('firstChild()', function () {
+
+  it('should return first child element', function () {
+
+    const ul = dom.createElement('ul');
+    const li1 = dom.createElement('li');
+    const li2 = dom.createElement('li');
+
+    ul.appendChild(li1);
+    ul.appendChild(li2);
+
+    expect(dom.firstChild(ul)).to.equal(li1);
+
+  });
+
+  it('should return null if node has no children', function () {
+
+    const ul = dom.createElement('ul');
+
+    expect(dom.firstChild(ul)).to.be.null;
+
+  });
+
+});
+
+
+describe('lastChild()', function () {
+
+  it('should return last child element', function () {
+
+    const ul = dom.createElement('ul');
+    const li1 = dom.createElement('li');
+    const li2 = dom.createElement('li');
+
+    ul.appendChild(li1);
+    ul.appendChild(li2);
+
+    expect(dom.lastChild(ul)).to.equal(li2);
+
+  });
+
+  it('should return null if node has no children', function () {
+
+    const ul = dom.createElement('ul');
+
+    expect(dom.lastChild(ul)).to.be.null;
+
+  });
+
+});
