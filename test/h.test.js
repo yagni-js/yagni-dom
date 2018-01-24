@@ -212,7 +212,8 @@ describe('renderAfter()', function () {
 
     const ret2 = appender(li2);
 
-    expect(ret2).to.equal(li1El);
+    expect(dom.prev(ret2)).to.equal(li1El);
+    expect(dom.next(li1El)).to.equal(ret2);
     expect(dom.textContent(div)).to.equal('FooBazBar');
 
   });

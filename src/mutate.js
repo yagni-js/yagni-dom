@@ -19,9 +19,9 @@ export function appendTo(target) {
   };
 }
 
-export function appendAfter(el) {
+export function appendAfter(target) {
   return tap(
-    function (target) {
+    function (el) {
       return parent(target).insertBefore(el, next(target));
     }
   );

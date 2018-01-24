@@ -59,14 +59,14 @@ describe('appendAfter()', function () {
     ul.appendChild(li1);
     ul.appendChild(li3);
 
-    const appendLi2 = dom.appendAfter(li2);
+    const addAfterLi1= dom.appendAfter(li1);
 
-    expect(appendLi2).to.be.a('function');
+    expect(addAfterLi1).to.be.a('function');
     expect(dom.parent(li2)).to.be.null;
 
-    const ret = appendLi2(li1);
+    const ret = addAfterLi1(li2);
 
-    expect(ret).to.equal(li1);
+    expect(ret).to.equal(li2);
     expect(dom.parent(li2)).to.equal(ul);
     expect(dom.prev(li2)).to.equal(li1);
     expect(dom.next(li2)).to.equal(li3);

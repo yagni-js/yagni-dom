@@ -59,10 +59,10 @@ export function render(target) {
 }
 
 export function renderAfter(target) {
-  return function (spec) {
-    const tree = hToDOM(spec);
-    return appendAfter(tree)(target);
-  };
+  return pipe([
+    hToDOM,
+    appendAfter(target)
+  ]);
 }
 
 export function renderC(target) {
