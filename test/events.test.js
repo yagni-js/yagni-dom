@@ -105,21 +105,116 @@ describe('removeEventListener()', function () {
 
 describe('eventHandler()', function () {
 
-  it('should return object with event and handler properties');
+  it('should return object with event and handler properties', function () {
 
-  it('should call handler if target element matches selector');
+    function handler(c) { return c + 1; }
 
-  it('should call handler if target element has closest element matched against selector');
+    const clickHandler = dom.eventHandler('click', 'a.js-click', handler);
 
-  it('should not call handler and should return original event if no element matches selector');
+    expect(clickHandler).to.be.an('object');
+    expect(clickHandler).to.have.property('event', 'click');
+    expect(clickHandler).to.have.property('handler');
+    expect(clickHandler.handler).to.not.equal(handler);
+
+  });
+
+  it('should call wrapped handler if target element matches selector and handler is attached to target element', function () {
+
+    function handler(evt) { return {in: evt}; }
+    const a = dom.h('a', {class: 'js-click'}, {}, []);
+    const el = dom.hToDOM(a);
+    const evt = {
+      target: el
+    };
+    const clickHandler = dom.eventHandler('click', 'a.js-click', handler);
+
+    const ret = clickHandler.handler(evt);
+
+    expect(ret).to.be.an('object');
+    expect(ret).to.have.deep.property('in');
+    expect(ret.in).to.be.an('object');
+    expect(ret.in).to.have.property('originalEvent', evt);
+    expect(ret.in).to.have.property('matchedElement', el);
+
+  });
+
+  // FIXME jsdom does not support Element.closest yet
+  // https://github.com/tmpvar/jsdom/pull/1951
+  it.skip('should call wrapped handler if target element has closest element matched against selector', function () {
+
+    function handler(evt) { return {in: evt}; }
+    const a = dom.h('a', {class: 'js-click'}, {}, [
+      dom.h('span', {}, {}, ['Foo'])
+    ]);
+    const el = dom.hToDOM(a);
+    const evt = {
+      target: dom.firstChild(el)
+    };
+    const clickHandler = dom.eventHandler('click', 'a.js-click', handler);
+
+    const ret = clickHandler.handler(evt);
+
+    expect(ret).to.be.an('object');
+    expect(ret).to.have.deep.property('in');
+    expect(ret.in).to.be.an('object');
+    expect(ret.in).to.have.property('originalEvent', evt);
+    expect(ret.in).to.have.property('matchedElement', el);
+
+  });
+
+  // FIXME jsdom does not support Element.closest yet
+  // https://github.com/tmpvar/jsdom/pull/1951
+  it.skip('should not call wrapped handler and should return original event if no element matches selector', function () {
+
+    function handler(evt) { return {in: evt}; }
+    const a = dom.h('a', {}, {}, [
+      dom.h('span', {}, {}, ['Foo'])
+    ]);
+    const el = dom.hToDOM(a);
+    const evt = {
+      target: dom.firstChild(el)
+    };
+    const clickHandler = dom.eventHandler('click', 'a.js-click', handler);
+
+    const ret = clickHandler.handler(evt);
+
+    expect(ret).to.equal(evt);
+
+  });
 
 });
 
 
 describe('preventDefault()', function () {
 
-  it('should call preventDefault method of passed in event');
+  it('should call preventDefault method of passed in event', function () {
 
-  it('should call preventDefault method of event wrapped as originalEvent property of object');
+    let cnt = 0;
+    const evt = {
+      preventDefault: function () { cnt = cnt + 1; }
+    };
+
+    const ret = dom.preventDefault(evt);
+
+    expect(ret).to.equal(evt);
+    expect(cnt).to.equal(1);
+
+  });
+
+  it('should call preventDefault method of event wrapped as originalEvent property of object', function () {
+
+    let cnt = 0;
+    const evt = {
+      originalEvent: {
+        preventDefault: function () { cnt = cnt + 1; }
+      }
+    };
+
+    const ret = dom.preventDefault(evt);
+
+    expect(ret).to.equal(evt);
+    expect(cnt).to.equal(1);
+
+  });
 
 });

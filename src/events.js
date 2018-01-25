@@ -31,11 +31,11 @@ export function eventHandler(event, selector, handler) {
   const wrapper = pipe([
     transform({
       originalEvent: identity,
-      matchedEl: matchedEl
+      matchedElement: matchedEl
     }),
     ifElse(
       pipe([
-        pick('matchedEl'),
+        pick('matchedElement'),
         isNil
       ]),
       pick('originalEvent'),
