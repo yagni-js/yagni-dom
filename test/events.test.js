@@ -101,3 +101,25 @@ describe('removeEventListener()', function () {
   });
 
 });
+
+
+describe('eventHandler()', function () {
+
+  it('should return object with event and handler properties');
+
+  it('should call handler if target element matches selector');
+
+  it('should call handler if target element has closest element matched against selector');
+
+  it('should not call handler and should return original event if no element matches selector');
+
+});
+
+
+describe('preventDefault()', function () {
+
+  it('should call preventDefault method of passed in event');
+
+  it('should call preventDefault method of event wrapped as originalEvent property of object');
+
+});
