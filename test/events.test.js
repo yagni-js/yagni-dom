@@ -257,21 +257,101 @@ describe('stopPropagation()', function () {
 
 describe('delegate()', function () {
 
-  it('should return function to be called');
+  it('should return function to be called', function () {
 
-  it('should add event listeners to target element');
+    expect(dom.delegate([])).to.be.a('function');
 
-  it('should attach removers to target element as __yagni_undelegate property');
+  });
+
+  it('should add event listeners to target element and attach removers as __yagni_undelegate property', function () {
+
+    const hasUndelegateProp = _.has('__yagni_undelegate');
+    const undelegateProp = _.pick('__yagni_undelegate');
+
+    const div = dom.h('div', {}, {}, [
+      dom.h('a', {class: 'add'}, {}, ['Add']),
+      dom.h('a', {class: 'remove'}, {}, ['Remove'])
+    ]);
+    const el = dom.hToDOM(div);
+    const a1 = dom.firstChild(el);
+    const a2 = dom.lastChild(el);
+
+    let cnt = 0;
+    const adder = dom.eventHandler('click', '.add', function () { cnt = cnt + 1; });
+
+    const delegateAdd = dom.delegate([adder]);
+
+    const ret = delegateAdd(el);
+
+    expect(ret).to.equal(el);
+    expect(hasUndelegateProp(ret)).to.be.true;
+    expect(undelegateProp(ret)).to.be.an('array');
+    expect(undelegateProp(ret)).to.have.length(1);
+
+    a1.click();
+    a1.click();
+    a1.click();
+    a1.click();
+    a1.click();
+
+    expect(cnt).to.equal(5);
+
+  });
 
 });
 
 
 describe('undelegate()', function () {
 
-  it('should remove event listeners from target element');
+  it('should remove event listeners from target element and set __yagni_undelegate property value to false', function () {
 
-  it('should set target element __yagni_undelegate property value to false');
+    const undelegateProp = _.pick('__yagni_undelegate');
 
-  it('should do nothing if __yagni_undelegate property value is not an array');
+    const div = dom.h('div', {}, {}, [
+      dom.h('a', {class: 'add'}, {}, ['Add']),
+      dom.h('a', {class: 'remove'}, {}, ['Remove'])
+    ]);
+    const el = dom.hToDOM(div);
+    const a1 = dom.firstChild(el);
+    const a2 = dom.lastChild(el);
+
+    let cnt = 0;
+    const adder = dom.eventHandler('click', '.add', function () { cnt = cnt + 1; });
+
+    const delegateAdd = dom.delegate([adder]);
+
+    delegateAdd(el);
+
+    a1.click();
+    a1.click();
+
+    expect(cnt).to.equal(2);
+
+    const ret = dom.undelegate(el);
+
+    expect(ret).to.equal(el);
+    expect(undelegateProp(ret)).to.be.false;
+
+    a1.click();
+    a1.click();
+    a1.click();
+    a1.click();
+    a1.click();
+
+    expect(cnt).to.equal(2);
+
+  });
+
+  it('should not fail and do nothing if __yagni_undelegate property value is not an array', function () {
+
+    const el = dom.createElement('div');
+
+    dom.setProp('__yagni_undelegate', 'foo')(el);
+
+    const ret = dom.undelegate(el);
+
+    expect(ret).to.equal(el);
+
+  });
 
 });
