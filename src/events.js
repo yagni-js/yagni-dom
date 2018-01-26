@@ -1,6 +1,7 @@
 
-import { callMethod, identity, ifElse, isNil, or, pick, pipe, tap, transform } from 'yagni';
+import { call, callMethod, identity, ifElse, isArray, isNil, or, pick, pipe, tap, transform } from 'yagni';
 
+import { setProp } from './props.js';
 import { matches, closest } from './query.js';
 
 
@@ -58,4 +59,39 @@ export const stopPropagation = tap(
     or(pick('originalEvent'), identity),
     callMethod(identity, 'stopPropagation')
   ])
+);
+
+// events = [
+//     eventHandler('click', '.add', function(evt) {...}),
+//     eventHandler('click', '.remove', function(evt) {...}),
+//     ...
+// ]
+export function delegate(events) {
+  const adders = events.map(addListener);
+  const removers = events.map(removeListener);
+  return pipe([
+    tap(setProp('__yagni_undelegate', removers)),
+    pipe(adders)
+  ]);
+}
+
+// el: DOM element
+export const undelegate = ifElse(
+  pipe([
+    pick('__yagni_undelegate'),
+    isArray
+  ]),
+  tap(
+    pipe([
+      call(
+        pipe([
+          pick('__yagni_undelegate'),
+          pipe
+        ]),
+        identity
+      ),
+      setProp('__yagni_undelegate', false)
+    ])
+  ),
+  identity
 );

@@ -253,3 +253,25 @@ describe('stopPropagation()', function () {
   });
 
 });
+
+
+describe('delegate()', function () {
+
+  it('should return function to be called');
+
+  it('should add event listeners to target element');
+
+  it('should attach removers to target element as __yagni_undelegate property');
+
+});
+
+
+describe('undelegate()', function () {
+
+  it('should remove event listeners from target element');
+
+  it('should set target element __yagni_undelegate property value to false');
+
+  it('should do nothing if __yagni_undelegate property value is not an array');
+
+});
