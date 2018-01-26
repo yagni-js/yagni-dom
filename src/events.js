@@ -52,3 +52,10 @@ export const preventDefault = tap(
     callMethod(identity, 'preventDefault')
   ])
 );
+
+export const stopPropagation = tap(
+  pipe([
+    or(pick('originalEvent'), identity),
+    callMethod(identity, 'stopPropagation')
+  ])
+);

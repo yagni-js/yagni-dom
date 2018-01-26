@@ -218,3 +218,38 @@ describe('preventDefault()', function () {
   });
 
 });
+
+
+describe('stopPropagation()', function () {
+
+  it('should call stopPropagation method of passed in event', function () {
+
+    let cnt = 0;
+    const evt = {
+      stopPropagation: function () { cnt = cnt + 1; }
+    };
+
+    const ret = dom.stopPropagation(evt);
+
+    expect(ret).to.equal(evt);
+    expect(cnt).to.equal(1);
+
+  });
+
+  it('should call stopPropagation method of event wrapped as originalEvent property of object', function () {
+
+    let cnt = 0;
+    const evt = {
+      originalEvent: {
+        stopPropagation: function () { cnt = cnt + 1; }
+      }
+    };
+
+    const ret = dom.stopPropagation(evt);
+
+    expect(ret).to.equal(evt);
+    expect(cnt).to.equal(1);
+
+  });
+
+});
