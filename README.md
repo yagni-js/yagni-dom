@@ -1,11 +1,11 @@
 # yagni-dom
 
 Yet another **pure functional** DOM API related frontend library built on top
-of [yagni](yagni) library.
+of [yagni][yagni] library.
 
 **Pure functional** in this context means functional code style - library code is
-linted using [eslint-plugin-fp](eslint-plugin-fp) and
-[eslint-plugin-better](eslint-plugin-better). Javascript code of the library is
+linted using [eslint-plugin-fp][eslint-plugin-fp] and
+[eslint-plugin-better][eslint-plugin-better]. Javascript code of the library is
 purely functional.
 
 
@@ -29,8 +29,8 @@ $ yarn add -D yagni-dom
 
 ## Usage
 
-Source code is written using [ES6 modules](es6-modules), built using
-[rollup](rollup) and distributed in two formats - as CommonJS module and as
+Source code is written using [ES6 modules][es6-modules], built using
+[rollup][rollup] and distributed in two formats - as CommonJS module and as
 ES6 module.
 
 CommonJS usage:
@@ -130,7 +130,7 @@ MIT
 
 
 [eslint-plugin-fp]: https://github.com/jfmengels/eslint-plugin-fp
-[eslint-plufin-better]: https://github.com/idmitriev/eslint-plugin-better
+[eslint-plugin-better]: https://github.com/idmitriev/eslint-plugin-better
 [es6-modules]: https://hacks.mozilla.org/2015/08/es6-in-depth-modules/
 [yagni]: https://github.com/ysegorov/yagni
 [rollup]: https://rollupjs.org/
