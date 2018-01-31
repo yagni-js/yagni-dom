@@ -138,6 +138,7 @@ describe('serializeForm()', function () {
       dom.h('input', {type: 'radio', name: 'hhh', checked: 'checked', value: 'hhh'}, {}, []),
       dom.h('input', {type: 'text', name: 'iii', value: 'iii', disabled: 'disabled'}, {}, []),
       dom.h('input', {name: 'jjj', value: 'jjj'}, {}, []),
+      dom.h('textarea', {name: 'kkk'}, {}, ['kkk']),
     ]);
     const el = dom.hToDOM(tree);
     const expected = {
@@ -147,7 +148,8 @@ describe('serializeForm()', function () {
       ddd: 'ddd',
       ggg: true,
       hhh: 'hhh',
-      jjj: 'jjj'
+      jjj: 'jjj',
+      kkk: 'kkk'
     };
 
     expect(dom.serializeForm(el)).to.deep.equal(expected);

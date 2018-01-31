@@ -58,7 +58,8 @@ function serializeFormReducer(acc, el) {
 }
 
 export const serializeForm = pipe([
-  query('input[name]'),
+  // TODO: HTMLSelectElement
+  query('input[name],textarea[name]'),
   call(reduce(serializeFormReducer), always({}))
 ]);
 
