@@ -1,0 +1,4 @@
+--ui bdd
+--require buble/register
+--require jsdom-global/register
+--reporter spec
