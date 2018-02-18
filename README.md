@@ -15,7 +15,7 @@ Using `npm`:
 
 ```shell
 
-$ npm install --save-dev yagni-dom
+$ npm install --save-dev @yagni-js/yagni-dom
 
 ```
 
@@ -23,7 +23,7 @@ Using `yarn`:
 
 ```shell
 
-$ yarn add -D yagni-dom
+$ yarn add -D @yagni-js/yagni-dom
 
 ```
 
@@ -37,7 +37,7 @@ CommonJS usage:
 
 ```javascript
 
-const dom = require('yagni-dom');
+const dom = require('@yagni-js/yagni-dom');
 
 ```
 
@@ -45,9 +45,9 @@ ES6 module usage:
 
 ```javascript
 
-import * as dom from 'yagni-dom';
+import * as dom from '@yagni-js/yagni-dom';
 // or
-import { h, hSVG, hToDOM } from 'yagni-dom';
+import { h, hSVG, hToDOM } from '@yagni-js/yagni-dom';
 
 ```
 
@@ -64,8 +64,8 @@ Here is an example of library usage:
 
 ```javascript
 
-import { pipe } from 'yagni';
-import { h, hToDOM, appendTo, firstChild } from 'yagni-dom';
+import { pipe } from '@yagni-js/yagni';
+import { h, hToDOM, appendTo, firstChild } from '@yagni-js/yagni-dom';
 
 const doc = window.document;
 
@@ -126,7 +126,7 @@ doc.body.appendChild(root);
 
 ## License
 
-MIT
+[Unlicense][unlicense]
 
 
 [eslint-plugin-fp]: https://github.com/jfmengels/eslint-plugin-fp
@@ -134,3 +134,4 @@ MIT
 [es6-modules]: https://hacks.mozilla.org/2015/08/es6-in-depth-modules/
 [yagni]: https://github.com/ysegorov/yagni
 [rollup]: https://rollupjs.org/
+[unlicense]: http://unlicense.org/
