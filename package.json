@@ -25,7 +25,7 @@
     "cleanjs"
   ],
   "author": "Yuri Egorov <ysegorov@gmail.com> (https://ysegorov.github.io/)",
-  "license": "UNLICENSE",
+  "license": "Unlicense",
   "bugs": {
     "url": "https://github.com/ysegorov/yagni-dom/issues"
   },
