@@ -1,5 +1,5 @@
 
-import { flatten, ifElse, isString, pipe, reduce } from 'yagni';
+import { flatten, ifElse, isString, pipe, reduce } from '@yagni-js/yagni';
 
 import { setAttrs } from './attrs.js';
 import { createElement, createSVGElement, createText } from './create.js';

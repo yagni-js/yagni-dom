@@ -1,5 +1,5 @@
 
-import { camelize, items, mutate, pickPath, pipe, reduce, tap } from 'yagni';
+import { camelize, items, mutate, pickPath, pipe, reduce, tap } from '@yagni-js/yagni';
 
 
 export function getData(name) {

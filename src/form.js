@@ -1,5 +1,5 @@
 
-import {always, call, callMethod, equals, fn2, identity, ifElse, obj, pipe, reduce } from 'yagni';
+import {always, call, callMethod, equals, fn2, identity, ifElse, obj, pipe, reduce } from '@yagni-js/yagni';
 
 import { query } from './query.js';
 import { getProp, setProp } from './props.js';

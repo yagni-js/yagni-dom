@@ -1,6 +1,6 @@
 
 const expect = require('chai').expect;
-const _ = require('yagni');
+const _ = require('@yagni-js/yagni');
 const dom = require('..');
 
 

@@ -1,5 +1,5 @@
 
-import { isDefined, pick, pipe, items, filter, reduce, tap } from 'yagni';
+import { isDefined, pick, pipe, items, filter, reduce, tap } from '@yagni-js/yagni';
 
 
 export function getAttr(name) {

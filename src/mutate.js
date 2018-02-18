@@ -1,5 +1,5 @@
 
-import { callMethod, identity, ifElse, isNil, map, pick, pipe, tap, transform } from 'yagni';
+import { callMethod, identity, ifElse, isNil, map, pick, pipe, tap, transform } from '@yagni-js/yagni';
 
 import { children, parent, next } from './tree.js';
 

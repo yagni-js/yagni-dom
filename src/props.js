@@ -1,5 +1,5 @@
 
-import { items, mutate, pick, pipe, reduce } from 'yagni';
+import { items, mutate, pick, pipe, reduce } from '@yagni-js/yagni';
 
 
 export const getProp = pick;

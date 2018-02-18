@@ -10,7 +10,7 @@ export default [
       {file: pkg.module, format: 'es'}
     ],
     external: [
-      'yagni'
+      '@yagni-js/yagni'
     ],
     plugins: [
       eslint({throwOnError: true})

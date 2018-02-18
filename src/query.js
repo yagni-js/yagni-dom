@@ -1,5 +1,5 @@
 
-import { identity, ifElse, isArray, first, pipe, toArray } from 'yagni';
+import { identity, ifElse, isArray, first, pipe, toArray } from '@yagni-js/yagni';
 
 import { doc } from './globals.js';
 

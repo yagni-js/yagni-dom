@@ -1,5 +1,5 @@
 
-import { filter, pick, pipe, toArray } from 'yagni';
+import { filter, pick, pipe, toArray } from '@yagni-js/yagni';
 
 import { matches } from './query.js';
 

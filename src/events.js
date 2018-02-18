@@ -1,5 +1,5 @@
 
-import { call, callMethod, identity, ifElse, isArray, isNil, or, pick, pipe, tap, transform } from 'yagni';
+import { call, callMethod, identity, ifElse, isArray, isNil, or, pick, pipe, tap, transform } from '@yagni-js/yagni';
 
 import { setProp } from './props.js';
 import { matches, closest } from './query.js';

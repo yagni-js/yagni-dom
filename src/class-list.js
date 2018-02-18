@@ -1,5 +1,5 @@
 
-import { pipe, pick, callMethod, tap, identity } from 'yagni';
+import { pipe, pick, callMethod, tap, identity } from '@yagni-js/yagni';
 
 
 function classListOp(method) {
