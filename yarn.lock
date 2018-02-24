@@ -6,6 +6,10 @@
   version "9.3.0"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-9.3.0.tgz#3a129cda7c4e5df2409702626892cb4b96546dd5"
 
+"@yagni-js/yagni@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@yagni-js/yagni/-/yagni-0.2.1.tgz#06707d324eabaabad0536300cf4840fa07959bdd"
+
 abab@^1.0.3:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/abab/-/abab-1.0.4.tgz#5faad9c2c07f60dd76770f71cf025b62a63cfd4e"
@@ -1836,10 +1840,6 @@ write@^0.2.1:
 xml-name-validator@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/xml-name-validator/-/xml-name-validator-2.0.1.tgz#4d8b8f1eccd3419aa362061becef515e1e559635"
-
-yagni@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/yagni/-/yagni-0.1.0.tgz#6150d4bb5e0c2fcc400f77bb93606b3507396c66"
 
 yallist@^2.1.2:
   version "2.1.2"
