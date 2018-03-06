@@ -1,6 +1,6 @@
 {
   "name": "@yagni-js/yagni-dom",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Yet another functional library (DOM API related)",
   "main": "dist/yagni-dom.cjs.js",
   "module": "dist/yagni-dom.esm.js",
@@ -45,6 +45,6 @@
     "rollup-plugin-eslint": "^4.0.0"
   },
   "peerDependencies": {
-    "@yagni-js/yagni": "^0.2.1"
+    "@yagni-js/yagni": "^0.3.0"
   }
 }
