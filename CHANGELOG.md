@@ -1,6 +1,11 @@
 # Changelog
 
 
+## 0.3.0 (10.03.2018)
+
+- add prepend() and prependTo() functions
+
+
 ## 0.2.0 (06.03.2018)
 
 - update peer dependency @yagni-js/yagni@0.3.0

@@ -1,6 +1,6 @@
 {
   "name": "@yagni-js/yagni-dom",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Yet another functional library (DOM API related)",
   "main": "dist/yagni-dom.cjs.js",
   "module": "dist/yagni-dom.esm.js",
