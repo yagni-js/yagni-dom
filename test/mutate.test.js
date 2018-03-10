@@ -76,6 +76,61 @@ describe('appendAfter()', function () {
 });
 
 
+describe('prepend()', function () {
+
+  it('should prepend element to target element', function () {
+
+    const p = dom.createElement('p');
+    const span1 = dom.createElement('span');
+    const span2 = dom.createElement('span');
+
+    p.appendChild(span2);
+    expect(dom.parent(span2)).to.equal(p);
+    expect(dom.firstChild(p)).to.equal(span2);
+
+    const prependSpan1 = dom.prepend(span1);
+
+    expect(prependSpan1).to.be.a('function');
+    expect(dom.parent(span1)).to.be.null;
+
+    const ret = prependSpan1(p);
+
+    expect(ret).to.equal(p);
+    expect(dom.parent(span1)).to.equal(p);
+    expect(dom.firstChild(p)).to.equal(span1);
+
+  });
+
+});
+
+
+describe('prependTo()', function () {
+
+  it('should prepend element to target element', function () {
+
+    const p = dom.createElement('p');
+    const span1 = dom.createElement('span');
+    const span2 = dom.createElement('span');
+
+    p.appendChild(span2);
+
+    const prependToP = dom.prependTo(p);
+
+    expect(prependToP).to.be.a('function');
+    expect(dom.parent(span1)).to.be.null;
+    expect(dom.firstChild(p)).to.equal(span2);
+
+    const ret = prependToP(span1);
+
+    expect(ret).to.equal(p);
+    expect(dom.parent(span1)).to.equal(p);
+    expect(dom.firstChild(p)).to.equal(span1);
+
+  });
+
+});
+
+
 describe('remove()', function () {
 
   it('should return same element if it has no parent', function () {
