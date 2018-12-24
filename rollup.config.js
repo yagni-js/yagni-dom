@@ -1,6 +1,6 @@
 
 import pkg from './package.json';
-import eslint from 'rollup-plugin-eslint';
+import { eslint } from 'rollup-plugin-eslint';
 
 export default [
   {
