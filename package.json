@@ -9,10 +9,10 @@
   ],
   "scripts": {
     "test": "mocha",
-    "pretest": "npm run build",
+    "pretest": "yarn run build",
     "build": "rollup -c",
     "prebuild": "rm -rf dist/*",
-    "prepublishOnly": "npm test"
+    "prepublishOnly": "yarn test"
   },
   "repository": {
     "type": "git",
