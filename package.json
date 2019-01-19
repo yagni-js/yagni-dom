@@ -31,20 +31,20 @@
   },
   "homepage": "https://github.com/ysegorov/yagni-dom#readme",
   "devDependencies": {
-    "@yagni-js/yagni": "^0.3.0",
+    "@yagni-js/yagni": "^0.4.0",
     "chai": "^4.2.0",
-    "eslint": "^5.11.0",
+    "eslint": "^5.12.1",
     "eslint-plugin-better": "^0.1.5",
     "eslint-plugin-fp": "^2.3.0",
     "eslint-plugin-import": "^2.14.0",
     "jsdom": "^13.1.0",
     "jsdom-global": "^3.0.2",
     "mocha": "^5.2.0",
-    "rollup": "^0.68.2",
+    "rollup": "^1.1.0",
     "rollup-plugin-buble": "^0.19.6",
     "rollup-plugin-eslint": "^5.0.0"
   },
   "peerDependencies": {
-    "@yagni-js/yagni": "^0.3.0"
+    "@yagni-js/yagni": "^0.4.0"
   }
 }
