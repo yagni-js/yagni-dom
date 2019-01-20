@@ -43,6 +43,25 @@ describe('setAttr()', function () {
 });
 
 
+describe('setAttrTo()', function () {
+
+  it('sets attribute value and returns element', function () {
+
+    const foo = dom.createElement('a');
+    const setAttrToFoo = dom.setAttrTo(foo);
+
+    expect(setAttrToFoo).to.be.a('function');
+
+    const ret = setAttrToFoo('title', 'Foo');
+
+    expect(ret).to.equal(foo);
+    expect(foo.getAttribute('title')).to.equal('Foo');
+
+  });
+
+});
+
+
 describe('setAttrs()', function () {
 
   it('sets attributes values in bulk and returns element', function () {
