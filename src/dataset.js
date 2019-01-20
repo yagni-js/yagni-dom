@@ -1,30 +1,29 @@
 
-import { camelize, items, mutate, pickPath, pipe, reduce, tap } from '@yagni-js/yagni';
+import { camelize, mutate, pickPath, reduceObj } from '@yagni-js/yagni';
 
 
 export function getData(name) {
   return pickPath(['dataset', camelize(name)]);
 }
 
-export function setData(name, value) {
-  return tap(
-    function (el) {
-      return mutate(el.dataset, camelize(name), value)
-    }
-  );
+function setDataset(el, name, value) {
+  // NB. side effect
+  const res = mutate(el.dataset, camelize(name), value);
+  return el;
 }
 
-// el: DOM element
-// spec: {key: 'key', value: 'value'}
-function setDataSpec(el, spec) {
-  return setData(spec.key, spec.value)(el);
+export function setData(name, value) {
+  return function _setData(el) {
+    return setDataset(el, name, value);
+  };
+}
+
+
+export function setDataTo(el) {
+  return function _setDataTo(name, value) {
+    return setDataset(el, name, value);
+  };
 }
 
 // datas: {name1: 'value1', name2: 'value2', ...}
-export function setDatas(datas) {
-  const ops = pipe([
-    items,
-    reduce(setDataSpec)
-  ]);
-  return ops(datas);
-}
+export const setDatas = reduceObj(setDataset);
