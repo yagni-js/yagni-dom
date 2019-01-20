@@ -138,9 +138,7 @@ describe('eventHandler()', function () {
 
   });
 
-  // FIXME jsdom does not support Element.closest yet
-  // https://github.com/tmpvar/jsdom/pull/1951
-  it.skip('should call wrapped handler if target element has closest element matched against selector', function () {
+  it('should call wrapped handler if target element has closest element matched against selector', function () {
 
     function handler(evt) { return {in: evt}; }
     const a = dom.h('a', {class: 'js-click'}, {}, [
@@ -162,9 +160,7 @@ describe('eventHandler()', function () {
 
   });
 
-  // FIXME jsdom does not support Element.closest yet
-  // https://github.com/tmpvar/jsdom/pull/1951
-  it.skip('should not call wrapped handler and should return original event if no element matches selector', function () {
+  it('should not call wrapped handler and should return original event if no element matches selector', function () {
 
     function handler(evt) { return {in: evt}; }
     const a = dom.h('a', {}, {}, [
