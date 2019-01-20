@@ -237,23 +237,21 @@ describe('setInputEditable()', function () {
 
 describe('isInputValid()', function () {
 
-  // FIXME jsdom does not support checkValidity yet
-  // https://github.com/tmpvar/jsdom/issues/544
-  it.skip('should return true for valid value', function () {
+  it('should return true for valid value', function () {
 
-    const input = dom.h('input', {}, {min: 3, max: 5, value: 4}, []);
+    const input = dom.h('input', {value: 'foo'}, {required: true}, []);
     const el = dom.hToDOM(input);
 
     expect(dom.isInputValid(el)).to.be.true;
 
   });
 
-  it.skip('should return false for invalid value', function () {
+  it('should return false for invalid value', function () {
 
-    const input = dom.h('input', {}, {min: 3, max: 5, value: 1}, []);
+    const input = dom.h('input', {}, {required: true}, []);
     const el = dom.hToDOM(input);
 
-    expect(dom.isInputValid(el)).to.be.true;
+    expect(dom.isInputValid(el)).to.be.false;
 
   });
 
