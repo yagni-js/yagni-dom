@@ -1,29 +1,29 @@
 
-import { items, mutate, pick, pipe, reduce } from '@yagni-js/yagni';
+import { mutate, pick, reduceObj } from '@yagni-js/yagni';
 
 
 export const getProp = pick;
 
 
+const setProperty = mutate;
+
+
 export function setProp(name, value) {
-  return function (el) {
-    return mutate(el, name, value);
+  return function _setProp(el) {
+    return setProperty(el, name, value);
   };
 }
 
-// el: DOM element
-// spec: {key: 'key', value: 'value'}
-function setPropSpec(el, spec) {
-  return setProp(spec.key, spec.value)(el);
+
+export function setPropTo(el) {
+  return function _setPropTo(name, value) {
+    return setProperty(el, name, value);
+  };
 }
 
+
 // props: {prop1: 'value1', prop2: 'value2', ...}
-export function setProps(props) {
-  const ops = pipe([
-    items,
-    reduce(setPropSpec)
-  ]);
-  return ops(props);
-}
+export const setProps = reduceObj(setProperty);
+
 
 export const textContent = getProp('textContent');
