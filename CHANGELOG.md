@@ -1,26 +1,36 @@
 # Changelog
 
 
-## 0.3.0 (10.03.2018)
+## 0.4.0 (?)
 
-- add prepend() and prependTo() functions
-
-
-## 0.2.0 (06.03.2018)
-
-- update peer dependency @yagni-js/yagni@0.3.0
-
-
-## 0.1.2 (24.02.2018)
-
-- move @yagni-js/yagni to peer dependencies in package.json
+- [+] add support for `HTMLSelectElement` to `serializeForm()` function
+- [+] add `setAttrTo()` function
+- [+] add `setPropTo()` function
+- [+] add `setDataTo()` function
+- [*] tune `setAttrs()`, `setProps()` and `setDatas()` functions
+- [*] update dependency `@yagni-js/yagni@0.4.0`
 
 
-## 0.1.1 (18.02.2018)
+## 0.3.0 (2018-03-10)
+
+- add `prepend()` and `prependTo()` functions
+
+
+## 0.2.0 (2018-03-06)
+
+- update peer dependency `@yagni-js/yagni@0.3.0`
+
+
+## 0.1.2 (2018-02-24)
+
+- move `@yagni-js/yagni` to peer dependencies in package.json
+
+
+## 0.1.1 (2018-02-18)
 
 - switch from MIT to Unlicense
 
 
-## 0.1.0 (18.02.2018)
+## 0.1.0 (2018-02-18)
 
 - initial release
