@@ -4,8 +4,8 @@ import { isDefined, reduceObj, tap } from '@yagni-js/yagni';
 
 /**
  * Takes an attribute `name` as an argument and returns **a new function**,
- * which then takes an Element `el` as an argument and returns **a string**
- * containing the value of a specified attribue on the Element.
+ * which then takes an Element `el` as an argument and returns value
+ * of an attribute on the element.
  * Returns **`null`** if attribute doesn't exist.
  *
  * Uses `getAttribute` method of Element.
@@ -13,8 +13,8 @@ import { isDefined, reduceObj, tap } from '@yagni-js/yagni';
  * @category Element
  *
  * @param {String} name attribute name to get value for
- * @returns {Function} to take `el` as an argument and return the value of
- * a specified attribute on the Element or `null` if attribute doesn't exist
+ * @returns {Function} to take `el` as an argument and return value of
+ * an attribute on the element or `null` if attribute doesn't exist
  *
  * @see getProp
  * @see getData
@@ -41,9 +41,8 @@ export function getAttr(name) {
 
 
 /**
- * Sets the `value` of an attribute `name` on the Element `el` and returns
- * `el`.
- * If `value` is not defined (is `undefined` or `null`) it will not be set.
+ * Sets the value of an attribute on the element and returns element.
+ * If value is not defined (is `undefined` or `null`) it will not be set.
  *
  * Uses `setAttribute` method of Element.
  *
@@ -67,8 +66,8 @@ function setAttribute(el, name, value) {
 /**
  * Takes an attribute `name` and `value` as arguments and returns
  * **a new function**, which then takes an Element `el` as an argument and
- * sets the `value` of an attribute `name` on the `el`. Returns `el`.
- * If `value` is not defined (is `undefined` or `null`) it will not be set.
+ * sets the value of an attribute on the element. Returns `el`.
+ * If value is not defined (is `undefined` or `null`) it will not be set.
  *
  * Uses `setAttribute` method of Element.
  *
@@ -76,8 +75,8 @@ function setAttribute(el, name, value) {
  *
  * @param {String} name attribute name
  * @param {String} value attribute value
- * @returns {Function} to take an Element `el` as an argument, set the `value`
- * of the attribute `name` on the `el` and return `el`
+ * @returns {Function} to take an Element `el` as an argument, set the value
+ * of an attribute on the element and return `el`
  *
  * @see setProp
  * @see setData
@@ -94,7 +93,7 @@ function setAttribute(el, name, value) {
  *
  *     const before = getHref(el);     // => null
  *
- *     const el2 = setHrefToTop(el);
+ *     const el2 = setHrefToTop(el);   // el2 is el
  *
  *     const after = getHref(el2);     // => '#top'
  *
@@ -107,10 +106,10 @@ export function setAttr(name, value) {
 
 
 /**
- * Takes and Element `el` as an argument and returns **a new function**,
+ * Takes Element `el` as an argument and returns **a new function**,
  * which then takes an attribute `name` and `value` as arguments and sets
- * the `value` of the attribute `name` on the `el`. Returns `el`.
- * If `value` is not defined (is `undefined` or `null`) it will not be set.
+ * the value of an attribute on the element. Returns `el`.
+ * If value is not defined (is `undefined` or `null`) it will not be set.
  *
  * Uses `setAttribute` method of Element.
  *
@@ -118,7 +117,7 @@ export function setAttr(name, value) {
  *
  * @param {Element} el target Element
  * @returns {Function} to take an attribute `name` and `value`, set the
- * `value` of the attribute `name` on the `el` and return `el`
+ * value of an attribute on the element and return `el`
  *
  * @see setPropTo
  * @see setDataTo
@@ -133,11 +132,11 @@ export function setAttr(name, value) {
  *     const getHref = getAttr('href');
  *     const setElAttr = setAttrTo(el);
  *
- *     const before = getHref(el);     // => null
+ *     const before = getHref(el);              // => null
  *
- *     const el2 = setElAttr('href', '#top');
+ *     const el2 = setElAttr('href', '#top');   // => el2 is el
  *
- *     const after = getHref(el2);     // => '#top'
+ *     const after = getHref(el2);              // => '#top'
  *
  */
 export function setAttrTo(el) {
@@ -150,9 +149,9 @@ export function setAttrTo(el) {
 /**
  * Takes an object `obj` of `(name, value)` pairs as an argument and
  * returns **a new function**, which then takes an Element `el` as an argument
- * and iteratively sets the `value` of the attribute `name` on the `el` for
+ * and iteratively sets the value of an attribute on the element for
  * each `(name, value)` pair from `obj`. Returns `el`.
- * If `value` for a correspondent attribute `name` is not defined
+ * If value for a correspondent attribute is not defined
  * (is `undefined` or `null`) it will not be set.
  *
  * Object `obj` structure:
@@ -179,7 +178,7 @@ export function setAttrTo(el) {
  *
  *     const getHref = getAttr('href');
  *     const getTitle = getAttr('title');
- *     const attrsSetter = setAttrs({title: 'Foo', href: '#top');
+ *     const attrsSetter = setAttrs({title: 'Foo', href: '#top'});
  *
  *     const title1 = getTitle(el);     // => null
  *     const href1 = getHref(el);       // => null
@@ -195,16 +194,16 @@ export const setAttrs = reduceObj(setAttribute);
 
 /**
  * Takes an attribute `name` as an argument and returns **a new function**,
- * which then takes an Element `el` as an argument, removes the attribute
- * with the specified `name` from the `el` and returns `el`.
+ * which then takes an Element `el` as an argument, removes an attribute
+ * from the element and returns `el`.
  *
  * Uses `removeAttribute` method of Element.
  *
  * @category Element
  *
  * @param {String} name attribute name
- * @returns {Function} to take an Element `el` as an argument, remove the
- * attribute with the specified `name` from the `el` and return `el`
+ * @returns {Function} to take an Element `el` as an argument, remove an
+ * attribute from the element and return `el`
  *
  * @example
  *
