@@ -160,6 +160,7 @@ export function setAttrTo(el) {
  *
  * Uses `setAttribute` method of Element.
  *
+ * @function
  * @category Element
  *
  * @param {Object} obj source object of attribute `(name, value)` pairs

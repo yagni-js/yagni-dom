@@ -7,6 +7,7 @@ import { mutate, pick, reduceObj } from '@yagni-js/yagni';
  * which then takes an Element `el` as an argument and returns value of the
  * specified property on the element.
  *
+ * @function
  * @category Element
  *
  * @param {String} name property name to get value for
@@ -37,6 +38,7 @@ export const getProp = pick;
 /**
  * Sets the value of a property on the element and returns element.
  *
+ * @function
  * @category Element
  *
  * @param {Element} el target element
@@ -137,6 +139,7 @@ export function setPropTo(el) {
  *
  *     {prop1: 'value1', prop2: 'value2', ...}
  *
+ * @function
  * @category Element
  *
  * @param {Object} obj source object of `(name, value)` pairs
@@ -173,6 +176,7 @@ export const setProps = reduceObj(setProperty);
  * Takes an Element `el` as an argument and returns value of the `textContent`
  * property on the element.
  *
+ * @function
  * @category Element
  *
  * @param {Element} el target element
