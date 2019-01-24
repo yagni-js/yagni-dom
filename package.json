@@ -16,20 +16,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ysegorov/yagni-dom.git"
+    "url": "git+https://github.com/yagni-js/yagni-dom.git"
   },
   "keywords": [
     "frontend",
     "functional",
-    "stateless",
-    "yagni-js"
+    "yagni"
   ],
   "author": "Yuri Egorov <ysegorov@gmail.com> (https://ysegorov.github.io/)",
   "license": "Unlicense",
   "bugs": {
-    "url": "https://github.com/ysegorov/yagni-dom/issues"
+    "url": "https://github.com/yagni-js/yagni-dom/issues"
   },
-  "homepage": "https://github.com/ysegorov/yagni-dom#readme",
+  "homepage": "https://github.com/yagni-js/yagni-dom#readme",
   "devDependencies": {
     "@yagni-js/yagni": "^0.4.0",
     "chai": "^4.2.0",
