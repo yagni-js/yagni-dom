@@ -26,3 +26,29 @@ export function siblings(selector) {
     ])(el);
   };
 }
+
+//
+// alternative implementation for siblings()
+//
+// export function siblings(selector) {
+//   return call(
+//     pipe([
+//       fn2(
+//         and,
+//         pipe([
+//           equals,
+//           not
+//         ]),
+//         pipe([
+//           always(selector),
+//           matches
+//         ])
+//       ),
+//       filter
+//     ]),
+//     pipe([
+//       parent,
+//       children
+//     ])
+//   );
+// }
