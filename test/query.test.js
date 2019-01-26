@@ -138,6 +138,8 @@ describe('query()', function () {
     expect(header).to.be.a('htmldivelement');
     expect(dom.textContent(header)).to.equal('Header');
 
+    expect(getHeader(header)).to.eql(header);
+
   });
 
   it('should return proper elements by single class', function () {
@@ -234,6 +236,26 @@ describe('queryFirst()', function () {
 
     expect(span).to.be.a('htmlspanelement');
     expect(dom.textContent(span)).to.equal('foo');
+
+  });
+
+  it('should return undefined for not found element', function () {
+
+    const getLink = dom.queryFirst('a');
+
+    const link = getLink(root);
+
+    expect(link).to.be.undefined;
+
+  });
+
+  it('should return null for not found element queried by id', function () {
+
+    const getLink = dom.queryFirst('#first');
+
+    const link = getLink(root);
+
+    expect(link).to.be.null;
 
   });
 
