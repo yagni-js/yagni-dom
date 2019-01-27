@@ -53,8 +53,8 @@ export const parent = pick('parentElement');
  *     const appendToList = appendTo(ul);
  *
  *     const ul1 = appendToList(li1);      // => ul1 is ul
- *     const ul2 = appendToList(li1);      // => ul2 is ul
- *     const ul3 = appendToList(li1);      // => ul3 is ul
+ *     const ul2 = appendToList(li2);      // => ul2 is ul
+ *     const ul3 = appendToList(li3);      // => ul3 is ul
  *
  *     const res = firstChild(ul);         // => li1
  *
