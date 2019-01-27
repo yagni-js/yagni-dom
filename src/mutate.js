@@ -1,5 +1,5 @@
 
-import { callMethod, identity, ifElse, isNil, map, pick, pipe, tap, transform } from '@yagni-js/yagni';
+import { fn2, identity, ifElse, isNil, pick, pipe, tap, transform } from '@yagni-js/yagni';
 
 import { children, firstChild, parent, next } from './tree.js';
 
@@ -41,6 +41,13 @@ export function prependTo(target) {
   };
 }
 
+
+export function removeChild(el, child) {
+  // NB. unused assignment
+  const res = el.removeChild(child);
+  return el;
+}
+
 export const remove = pipe([
   transform({
     parent: parent,
@@ -49,21 +56,16 @@ export const remove = pipe([
   ifElse(
     pipe([pick('parent'), isNil]),
     pick('el'),
-    pipe([
-      tap(
-        callMethod(pick('parent'), 'removeChild', pick('el'))
-      ),
-      pick('parent')
-    ])
+    fn2(removeChild, pick('parent'), pick('el'))
   )
 ]);
 
-export const removeChildren = tap(
-  pipe([
-    children,
-    map(remove)
-  ])
-);
+
+export function removeChildren(el) {
+  const elements = children(el);
+  return elements.reduce(removeChild, el);
+}
+
 
 export function replace(oldEl) {
   return tap(
