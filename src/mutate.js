@@ -1,43 +1,46 @@
 
-import { fn2, identity, ifElse, isNil, pick, pipe, tap, transform } from '@yagni-js/yagni';
+import { fn2, identity, ifElse, isNil, pick, pipe, transform } from '@yagni-js/yagni';
 
 import { children, firstChild, parent, next } from './tree.js';
 
 
 export function append(el) {
-  return tap(
-    function (target) {
-      return target.appendChild(el);
-    }
-  );
+  return function _append(target) {
+    // NB. unused assignment
+    const child = target.appendChild(el);
+    return target;
+  };
 }
 
 export function appendTo(target) {
-  return function (el) {
+  return function _appendTo(el) {
+    // NB. unused assignment
     const child = target.appendChild(el);
-    return parent(child);
+    return target;
   };
 }
 
 export function appendAfter(target) {
-  return tap(
-    function (el) {
-      return parent(target).insertBefore(el, next(target));
-    }
-  );
+  return function _appendAfter(el) {
+    // NB. unused assignment
+    const child = parent(target).insertBefore(el, next(target));
+    return el;
+  };
 }
 
 export function prepend(el) {
-  return function (target) {
+  return function _prepend(target) {
+    // NB. unused assignment
     const child = target.insertBefore(el, firstChild(target));
-    return parent(child);
+    return target;
   };
 }
 
 export function prependTo(target) {
-  return function (el) {
+  return function _prependTo(el) {
+    // NB. unused assignment
     const child = target.insertBefore(el, firstChild(target));
-    return parent(child);
+    return target;
   };
 }
 
@@ -68,9 +71,9 @@ export function removeChildren(el) {
 
 
 export function replace(oldEl) {
-  return tap(
-    function (newEl) {
-      return parent(oldEl).replaceChild(newEl, oldEl);
-    }
-  );
+  return function _replace(newEl) {
+    // NB. unused assignment
+    const res = parent(oldEl).replaceChild(newEl, oldEl);
+    return newEl;
+  };
 }
