@@ -1,14 +1,19 @@
 # Changelog
 
 
-## 0.4.0 (?)
+## 1.0.0 (?)
 
 - [+] add support for `HTMLSelectElement` to `serializeForm()` function
 - [+] add `setAttrTo()` function
 - [+] add `setPropTo()` function
 - [+] add `setDataTo()` function
+- [+] add `removeChild()` function
 - [*] tune `setAttrs()`, `setProps()` and `setDatas()` functions
 - [*] update dependency `@yagni-js/yagni@0.4.0`
+
+### Breaking changes
+
+- [*] change `h()` and `hSVG()` functions to return a factory function
 
 
 ## 0.3.0 (2018-03-10)
