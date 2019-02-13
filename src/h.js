@@ -1,5 +1,5 @@
 
-import { flatten, ifElse, isString, pipe, reduce } from '@yagni-js/yagni';
+import { always, ifElse, isArray, isString, pipe, reduce } from '@yagni-js/yagni';
 
 import { setAttrs } from './attrs.js';
 import { createElement, createSVGElement, createText } from './create.js';
@@ -8,42 +8,45 @@ import { appendAfter, removeChildren, replace } from './mutate.js';
 
 
 export function h(tagName, attrs, props, children) {
-  return {
-    tagName: tagName,
-    attrs: attrs,
-    props: props,
-    children: flatten(children)
-  };
+  return pipe([
+    always(tagName),
+    createElement,
+    setAttrs(attrs),
+    setProps(props),
+    createChildren(children)
+  ]);
 }
 
 export function hSVG(tagName, attrs, props, children) {
-  return {
-    tagName: tagName,
-    isSVG: true,
-    attrs: attrs,
-    props: props,
-    children: flatten(children)
-  };
+  return pipe([
+    always(tagName),
+    createSVGElement,
+    setAttrs(attrs),
+    setProps(props),
+    createChildren(children)
+  ]);
 }
 
-function createChild(target, spec) {
-  const el = hToDOM(spec);
+function createChild(target, smth) {
+  const el = hToDOM(smth);
   // NB. side effect - unused assignment
   const child = target.appendChild(el);
   return target
 }
 
-const createChildren = reduce(createChild);
+function createChildren(children) {
+  return function _createChildren(target) {
+    return children.reduce(
+      function __createChildren(el, item) {
+        return isArray(item) ? item.reduce(__createChildren, el) : createChild(el, item);
+      },
+      target
+    );
+  };
+}
 
-function createEl(spec) {
-  const creator = spec.isSVG ? createSVGElement : createElement;
-
-  return pipe([
-    creator,
-    setAttrs(spec.attrs),
-    setProps(spec.props),
-    createChildren(spec.children)
-  ])(spec.tagName);
+function createEl(factory) {
+  return factory();
 }
 
 export const hToDOM = ifElse(
@@ -53,8 +56,8 @@ export const hToDOM = ifElse(
 );
 
 export function render(target) {
-  return function (spec) {
-    return createChild(target, spec);
+  return function (smth) {
+    return createChild(target, smth);
   };
 }
 
@@ -66,8 +69,8 @@ export function renderAfter(target) {
 }
 
 export function renderC(target) {
-  return function (spec) {
-    return createChild(removeChildren(target), spec);
+  return function (smth) {
+    return createChild(removeChildren(target), smth);
   };
 }
 
