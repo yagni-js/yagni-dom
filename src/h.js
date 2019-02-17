@@ -1,5 +1,5 @@
 
-import { always, ifElse, isArray, isString, pipe, reduce } from '@yagni-js/yagni';
+import { always, call, identity, ifElse, isArray, isString, pipe, reduce } from '@yagni-js/yagni';
 
 import { setAttrs } from './attrs.js';
 import { createElement, createSVGElement, createText } from './create.js';
@@ -28,7 +28,7 @@ export function hSVG(tagName, attrs, props, children) {
 }
 
 function createChild(target, smth) {
-  const el = hToDOM(smth);
+  const el = isString(smth) ? createText(smth) : smth();
   // NB. side effect - unused assignment
   const child = target.appendChild(el);
   return target
@@ -45,16 +45,6 @@ function createChildren(children) {
   };
 }
 
-function createEl(factory) {
-  return factory();
-}
-
-export const hToDOM = ifElse(
-  isString,
-  createText,
-  createEl
-);
-
 export function render(target) {
   return function (smth) {
     return createChild(target, smth);
@@ -63,7 +53,7 @@ export function render(target) {
 
 export function renderAfter(target) {
   return pipe([
-    hToDOM,
+    call(identity),
     appendAfter(target)
   ]);
 }
@@ -76,7 +66,7 @@ export function renderC(target) {
 
 export function renderR(target) {
   return pipe([
-    hToDOM,
+    call(identity),
     replace(target)
   ]);
 }

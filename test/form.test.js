@@ -7,8 +7,8 @@ describe('inputType()', function () {
 
   it('should return lowercased input type', function () {
 
-    const input = dom.h('input', {type: 'RADIO'}, {}, []);
-    const el = dom.hToDOM(input);
+    const factory = dom.h('input', {type: 'RADIO'}, {}, []);
+    const el = factory();
 
     expect(dom.inputType(el)).to.equal('radio');
 
@@ -30,8 +30,8 @@ describe('serializeInput()', function () {
 
   it('should return object', function () {
 
-    const input = dom.h('input', {name: 'foo', value: 'baz'}, {}, []);
-    const el = dom.hToDOM(input);
+    const factory = dom.h('input', {name: 'foo', value: 'baz'}, {}, []);
+    const el = factory();
 
     expect(dom.serializeInput(el)).to.be.an('object');
 
@@ -39,8 +39,8 @@ describe('serializeInput()', function () {
 
   it('should return empty object for file input', function () {
 
-    const input = dom.h('input', {type: 'file', name: 'foo', value: 'baz'}, {}, []);
-    const el = dom.hToDOM(input);
+    const factory = dom.h('input', {type: 'file', name: 'foo', value: 'baz'}, {}, []);
+    const el = factory();
 
     expect(dom.serializeInput(el)).to.deep.equal({});
 
@@ -48,8 +48,8 @@ describe('serializeInput()', function () {
 
   it('should return empty object for disabled input', function () {
 
-    const input = dom.h('input', {type: 'text', name: 'foo', value: 'baz', disabled: 'disabled'}, {}, []);
-    const el = dom.hToDOM(input);
+    const factory = dom.h('input', {type: 'text', name: 'foo', value: 'baz', disabled: 'disabled'}, {}, []);
+    const el = factory();
 
     expect(dom.serializeInput(el)).to.deep.equal({});
 
@@ -57,8 +57,8 @@ describe('serializeInput()', function () {
 
   it('should return empty object for not selected checkbox input', function () {
 
-    const input = dom.h('input', {type: 'checkbox', name: 'foo'}, {}, []);
-    const el = dom.hToDOM(input);
+    const factory = dom.h('input', {type: 'checkbox', name: 'foo'}, {}, []);
+    const el = factory();
 
     expect(dom.serializeInput(el)).to.deep.equal({});
 
@@ -66,8 +66,8 @@ describe('serializeInput()', function () {
 
   it('should return empty object for not selected radio input', function () {
 
-    const input = dom.h('input', {type: 'radio', name: 'foo'}, {}, []);
-    const el = dom.hToDOM(input);
+    const factory = dom.h('input', {type: 'radio', name: 'foo'}, {}, []);
+    const el = factory();
 
     expect(dom.serializeInput(el)).to.deep.equal({});
 
@@ -75,8 +75,8 @@ describe('serializeInput()', function () {
 
   it('should return serialized value for selected checkbox input', function () {
 
-    const input = dom.h('input', {type: 'checkbox', name: 'foo', checked: 'checked'}, {}, []);
-    const el = dom.hToDOM(input);
+    const factory = dom.h('input', {type: 'checkbox', name: 'foo', checked: 'checked'}, {}, []);
+    const el = factory();
 
     expect(dom.serializeInput(el)).to.deep.equal({foo: true});
 
@@ -84,8 +84,8 @@ describe('serializeInput()', function () {
 
   it('should return serialized value for selected radio input', function () {
 
-    const input = dom.h('input', {type: 'radio', name: 'foo', checked: 'checked', value: 'baz'}, {}, []);
-    const el = dom.hToDOM(input);
+    const factory = dom.h('input', {type: 'radio', name: 'foo', checked: 'checked', value: 'baz'}, {}, []);
+    const el = factory();
 
     expect(dom.serializeInput(el)).to.deep.equal({foo: 'baz'});
 
@@ -93,8 +93,8 @@ describe('serializeInput()', function () {
 
   it('should return serialized value for text input', function () {
 
-    const input = dom.h('input', {type: 'text', name: 'foo', value: 'baz'}, {}, []);
-    const el = dom.hToDOM(input);
+    const factory = dom.h('input', {type: 'text', name: 'foo', value: 'baz'}, {}, []);
+    const el = factory();
 
     expect(dom.serializeInput(el)).to.deep.equal({foo: 'baz'});
 
@@ -102,8 +102,8 @@ describe('serializeInput()', function () {
 
   it('should return serialized value for password input', function () {
 
-    const input = dom.h('input', {type: 'password', name: 'foo', value: 'baz'}, {}, []);
-    const el = dom.hToDOM(input);
+    const factory = dom.h('input', {type: 'password', name: 'foo', value: 'baz'}, {}, []);
+    const el = factory();
 
     expect(dom.serializeInput(el)).to.deep.equal({foo: 'baz'});
 
@@ -111,8 +111,8 @@ describe('serializeInput()', function () {
 
   it('should return serialized value for hidden input', function () {
 
-    const input = dom.h('input', {type: 'hidden', name: 'foo', value: 'baz'}, {}, []);
-    const el = dom.hToDOM(input);
+    const factory = dom.h('input', {type: 'hidden', name: 'foo', value: 'baz'}, {}, []);
+    const el = factory();
 
     expect(dom.serializeInput(el)).to.deep.equal({foo: 'baz'});
 
@@ -125,7 +125,7 @@ describe('serializeForm()', function () {
 
   it('should serialize all inputs with names', function () {
 
-    const tree = dom.h('form', {}, {}, [
+    const factory = dom.h('form', {}, {}, [
       dom.h('input', {type: 'text', name: 'aaa', value: ''}, {}, []),
       dom.h('input', {type: 'text', name: 'bbb', value: 'bbb'}, {}, []),
       dom.h('input', {type: 'password', name: 'ccc', value: 'ccc'}, {}, []),
@@ -146,7 +146,7 @@ describe('serializeForm()', function () {
         dom.h('option', {value: 'bar'}, {}, ['bar'])
       ])
     ]);
-    const el = dom.hToDOM(tree);
+    const el = factory();
     const expected = {
       aaa: '',
       bbb: 'bbb',
@@ -170,8 +170,8 @@ describe('setInputDisabled()', function () {
 
   it('should make input disabled', function () {
 
-    const input = dom.h('input', {}, {disabled: false}, []);
-    const el = dom.hToDOM(input);
+    const factory = dom.h('input', {}, {disabled: false}, []);
+    const el = factory();
 
     expect(el.disabled).to.be.false;
 
@@ -189,8 +189,8 @@ describe('setInputEnabled()', function () {
 
   it('should make input enabled', function () {
 
-    const input = dom.h('input', {}, {disabled: true}, []);
-    const el = dom.hToDOM(input);
+    const factory = dom.h('input', {}, {disabled: true}, []);
+    const el = factory();
 
     expect(el.disabled).to.be.true;
 
@@ -208,8 +208,8 @@ describe('setInputReadonly()', function () {
 
   it('should make input readonly', function () {
 
-    const input = dom.h('input', {}, {}, []);
-    const el = dom.hToDOM(input);
+    const factory = dom.h('input', {}, {}, []);
+    const el = factory();
 
     expect(el.readOnly).to.be.false;
 
@@ -227,8 +227,8 @@ describe('setInputEditable()', function () {
 
   it('should make input editable', function () {
 
-    const input = dom.h('input', {}, {readOnly: true}, []);
-    const el = dom.hToDOM(input);
+    const factory = dom.h('input', {}, {readOnly: true}, []);
+    const el = factory();
 
     expect(el.readOnly).to.be.true;
 
@@ -246,8 +246,8 @@ describe('isInputValid()', function () {
 
   it('should return true for valid value', function () {
 
-    const input = dom.h('input', {value: 'foo'}, {required: true}, []);
-    const el = dom.hToDOM(input);
+    const factory = dom.h('input', {value: 'foo'}, {required: true}, []);
+    const el = factory();
 
     expect(dom.isInputValid(el)).to.be.true;
 
@@ -255,8 +255,8 @@ describe('isInputValid()', function () {
 
   it('should return false for invalid value', function () {
 
-    const input = dom.h('input', {}, {required: true}, []);
-    const el = dom.hToDOM(input);
+    const factory = dom.h('input', {}, {required: true}, []);
+    const el = factory();
 
     expect(dom.isInputValid(el)).to.be.false;
 

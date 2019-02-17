@@ -27,8 +27,8 @@ describe('addEventListener()', function () {
 
     const hasWasClickedClass = dom.hasClass('was-clicked');
 
-    const a = dom.h('a', {}, {}, []);
-    const el = dom.hToDOM(a);
+    const factory = dom.h('a', {}, {}, []);
+    const el = factory();
     const spec = {
       event: 'click',
       handler: clickHandler
@@ -71,8 +71,8 @@ describe('removeEventListener()', function () {
       cnt = cnt + 1;
     }
 
-    const a = dom.h('a', {}, {}, []);
-    const el = dom.hToDOM(a);
+    const factory = dom.h('a', {}, {}, []);
+    const el = factory();
     const spec = {
       event: 'click',
       handler: clickHandler
@@ -121,8 +121,8 @@ describe('eventHandler()', function () {
   it('should call wrapped handler if target element matches selector and handler is attached to target element', function () {
 
     function handler(evt) { return {in: evt}; }
-    const a = dom.h('a', {class: 'js-click'}, {}, []);
-    const el = dom.hToDOM(a);
+    const factory = dom.h('a', {class: 'js-click'}, {}, []);
+    const el = factory();
     const evt = {
       target: el
     };
@@ -141,10 +141,10 @@ describe('eventHandler()', function () {
   it('should call wrapped handler if target element has closest element matched against selector', function () {
 
     function handler(evt) { return {in: evt}; }
-    const a = dom.h('a', {class: 'js-click'}, {}, [
+    const factory = dom.h('a', {class: 'js-click'}, {}, [
       dom.h('span', {}, {}, ['Foo'])
     ]);
-    const el = dom.hToDOM(a);
+    const el = factory();
     const evt = {
       target: dom.firstChild(el)
     };
@@ -163,10 +163,10 @@ describe('eventHandler()', function () {
   it('should not call wrapped handler and should return original event if no element matches selector', function () {
 
     function handler(evt) { return {in: evt}; }
-    const a = dom.h('a', {}, {}, [
+    const factory = dom.h('a', {}, {}, [
       dom.h('span', {}, {}, ['Foo'])
     ]);
-    const el = dom.hToDOM(a);
+    const el = factory();
     const evt = {
       target: dom.firstChild(el)
     };
@@ -264,11 +264,11 @@ describe('delegate()', function () {
     const hasUndelegateProp = _.has('__yagni_undelegate');
     const undelegateProp = _.pick('__yagni_undelegate');
 
-    const div = dom.h('div', {}, {}, [
+    const factory = dom.h('div', {}, {}, [
       dom.h('a', {class: 'add'}, {}, ['Add']),
       dom.h('a', {class: 'remove'}, {}, ['Remove'])
     ]);
-    const el = dom.hToDOM(div);
+    const el = factory();
     const a1 = dom.firstChild(el);
     const a2 = dom.lastChild(el);
 
@@ -303,11 +303,11 @@ describe('undelegate()', function () {
 
     const undelegateProp = _.pick('__yagni_undelegate');
 
-    const div = dom.h('div', {}, {}, [
+    const factory = dom.h('div', {}, {}, [
       dom.h('a', {class: 'add'}, {}, ['Add']),
       dom.h('a', {class: 'remove'}, {}, ['Remove'])
     ]);
-    const el = dom.hToDOM(div);
+    const el = factory();
     const a1 = dom.firstChild(el);
     const a2 = dom.lastChild(el);
 
