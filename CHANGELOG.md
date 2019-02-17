@@ -14,6 +14,7 @@
 ### Breaking changes
 
 - [*] change `h()` and `hSVG()` functions to return a factory function
+- [-] remove `hToDOM()` function
 
 
 ## 0.3.0 (2018-03-10)
