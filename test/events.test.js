@@ -142,7 +142,7 @@ describe('eventHandler()', function () {
 
     function handler(evt) { return {in: evt}; }
     const factory = dom.h('a', {class: 'js-click'}, {}, [
-      dom.h('span', {}, {}, ['Foo'])
+      dom.h('span', {}, {}, [dom.hText('Foo')])
     ]);
     const el = factory();
     const evt = {
@@ -164,7 +164,7 @@ describe('eventHandler()', function () {
 
     function handler(evt) { return {in: evt}; }
     const factory = dom.h('a', {}, {}, [
-      dom.h('span', {}, {}, ['Foo'])
+      dom.h('span', {}, {}, [dom.hText('Foo')])
     ]);
     const el = factory();
     const evt = {
@@ -265,8 +265,8 @@ describe('delegate()', function () {
     const undelegateProp = _.pick('__yagni_undelegate');
 
     const factory = dom.h('div', {}, {}, [
-      dom.h('a', {class: 'add'}, {}, ['Add']),
-      dom.h('a', {class: 'remove'}, {}, ['Remove'])
+      dom.h('a', {class: 'add'}, {}, [dom.hText('Add')]),
+      dom.h('a', {class: 'remove'}, {}, [dom.hText('Remove')])
     ]);
     const el = factory();
     const a1 = dom.firstChild(el);
@@ -304,8 +304,8 @@ describe('undelegate()', function () {
     const undelegateProp = _.pick('__yagni_undelegate');
 
     const factory = dom.h('div', {}, {}, [
-      dom.h('a', {class: 'add'}, {}, ['Add']),
-      dom.h('a', {class: 'remove'}, {}, ['Remove'])
+      dom.h('a', {class: 'add'}, {}, [dom.hText('Add')]),
+      dom.h('a', {class: 'remove'}, {}, [dom.hText('Remove')])
     ]);
     const el = factory();
     const a1 = dom.firstChild(el);

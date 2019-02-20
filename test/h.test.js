@@ -22,9 +22,9 @@ describe('h()', function () {
 
   it('should create proper dom tree when factory function gets called', function () {
 
-    const p1 = dom.h('p', {}, {}, ['Foo']);
-    const p2 = dom.h('p', {}, {}, ['Baz']);
-    const text = 'Bar';
+    const p1 = dom.h('p', {}, {}, [dom.hText('Foo')]);
+    const p2 = dom.h('p', {}, {}, [dom.hText('Baz')]);
+    const text = dom.hText('Bar');
     const factory = dom.h(
       'div',
       {'class': 'is-active is-highlighted', 'data-bar': 42},
@@ -71,7 +71,7 @@ describe('hSVG()', function () {
 
   });
 
-  it('should return proper dom tree when factory function gets called', function () {
+  it('should create proper dom tree when factory function gets called', function () {
 
     const line1 = dom.hSVG('line', {x1: 0, y1: 0, x2: 1, y2: 1}, {}, []);
     const line2 = dom.hSVG('line', {x1: 1, y1: 1, x2: 2, y2: 2}, {}, []);
@@ -115,6 +115,30 @@ describe('hSVG()', function () {
 });
 
 
+describe('hText()', function () {
+
+  it('should return function to be called', function () {
+
+    const factory = dom.hText('Foo');
+
+    expect(factory).to.be.a('function');
+
+  });
+
+  it('should create text node when factory function gets called', function () {
+
+    const factory = dom.hText('Foo');
+
+    const node = factory();
+
+    expect(node).to.be.a('text');
+    expect(node.data).to.equal('Foo');
+
+  });
+
+});
+
+
 describe('render()', function () {
 
   it('should return function to be called', function () {
@@ -126,14 +150,14 @@ describe('render()', function () {
 
   });
 
-  it('should render spec by creating dom tree from spec and appending it to target', function () {
+  it('should create dom element and append it to target element', function () {
 
     const div = dom.createElement('div');
     const renderer = dom.render(div);
 
-    const li1 = dom.h('li', {}, {}, [dom.h('span', {}, {}, ['Foo'])]);
-    const li2 = dom.h('li', {}, {}, [dom.h('span', {}, {}, ['Baz'])]);
-    const li3 = dom.h('li', {}, {}, [dom.h('span', {}, {}, ['Bar'])]);
+    const li1 = dom.h('li', {}, {}, [dom.h('span', {}, {}, [dom.hText('Foo')])]);
+    const li2 = dom.h('li', {}, {}, [dom.h('span', {}, {}, [dom.hText('Baz')])]);
+    const li3 = dom.h('li', {}, {}, [dom.h('span', {}, {}, [dom.hText('Bar')])]);
     const ul = dom.h('ul', {}, {}, [li1, li2, li3]);
 
     expect(dom.textContent(div)).to.equal('');
@@ -143,6 +167,20 @@ describe('render()', function () {
     expect(ret).to.equal(div);
     expect(dom.textContent(div)).to.equal('FooBazBar');
     // TODO add more tests
+
+  });
+
+  it('should not support render of text node', function () {
+
+    const div = dom.createElement('div');
+    const renderToDiv = dom.render(div);
+
+    function run() {
+      const foo = dom.createText('Foo');
+      return renderToDiv(foo);
+    }
+
+    expect(run).to.throw(TypeError);
 
   });
 
@@ -160,14 +198,14 @@ describe('renderAfter()', function () {
 
   });
 
-  it('should render spec by creating dom tree from spec and appending it after the target', function () {
+  it('should create dom element and append it after the target', function () {
 
     const div = dom.createElement('div');
     const renderer = dom.render(div);
 
-    const li1 = dom.h('li', {}, {}, [dom.h('span', {}, {}, ['Foo'])]);
-    const li2 = dom.h('li', {}, {}, [dom.h('span', {}, {}, ['Baz'])]);
-    const li3 = dom.h('li', {}, {}, [dom.h('span', {}, {}, ['Bar'])]);
+    const li1 = dom.h('li', {}, {}, [dom.h('span', {}, {}, [dom.hText('Foo')])]);
+    const li2 = dom.h('li', {}, {}, [dom.h('span', {}, {}, [dom.hText('Baz')])]);
+    const li3 = dom.h('li', {}, {}, [dom.h('span', {}, {}, [dom.hText('Bar')])]);
     const ul = dom.h('ul', {}, {}, [li1, li3]);
 
     expect(dom.textContent(div)).to.equal('');
@@ -191,6 +229,24 @@ describe('renderAfter()', function () {
 
   });
 
+  it('should not support render of text node', function () {
+
+    const div = dom.h('div', {}, {}, [
+      dom.h('span', {}, {}, [dom.hText('span1')]),
+      dom.h('span', {}, {}, [dom.hText('span2')])
+    ]);
+    const el = div();
+    const renderAfterSpan1 = dom.renderAfter(el.firstChild);
+
+    function run() {
+      const foo = dom.createText('Foo');
+      return renderAfterSpan1(foo);
+    }
+
+    expect(run).to.throw(TypeError);
+
+  });
+
 });
 
 
@@ -205,13 +261,13 @@ describe('renderC()', function () {
 
   });
 
-  it('should render spec by clearing children nodes from target, creating dom tree from spec and appending it after the target', function () {
+  it('should clear children nodes from target, create dom element and append it to target', function () {
 
     const div = dom.createElement('div');
     const renderer = dom.renderC(div);
 
-    const p1 = dom.h('p', {}, {}, ['Foo']);
-    const p2 = dom.h('p', {}, {}, ['Baz']);
+    const p1 = dom.h('p', {}, {}, [dom.hText('Foo')]);
+    const p2 = dom.h('p', {}, {}, [dom.hText('Baz')]);
 
     expect(dom.textContent(div)).to.equal('');
 
@@ -224,6 +280,25 @@ describe('renderC()', function () {
 
     expect(ret2).to.equal(div);
     expect(dom.textContent(div)).to.equal('Baz');
+
+  });
+
+  it('should not support render of text node', function () {
+
+    const div = dom.h('div', {}, {}, [
+      dom.h('span', {}, {}, [dom.hText('span1')]),
+      dom.h('span', {}, {}, [dom.hText('span2')])
+    ]);
+    const el = div();
+
+    const clearAndAppendToDiv = dom.renderC(el);
+
+    function run() {
+      const foo = dom.createText('Foo');
+      return clearAndAppendToDiv(foo);
+    }
+
+    expect(run).to.throw(TypeError);
 
   });
 
@@ -241,12 +316,12 @@ describe('renderR()', function () {
 
   });
 
-  it('should render spec by replacing target', function () {
+  it('should create dom element and replace target with it', function () {
 
     const ul = dom.createElement('ul');
 
-    const li1 = dom.h('li', {}, {}, ['Foo']);
-    const li2 = dom.h('li', {}, {}, ['Baz']);
+    const li1 = dom.h('li', {}, {}, [dom.hText('Foo')]);
+    const li2 = dom.h('li', {}, {}, [dom.hText('Baz')]);
 
     const ret1 = dom.render(ul)(li1);
 
@@ -262,6 +337,25 @@ describe('renderR()', function () {
     expect(dom.parent(ret2)).to.equal(ul);
     expect(dom.textContent(ul)).to.equal('Baz');
 
+  });
+
+  it('should create text node and replace target with it', function () {
+
+    const div = dom.h('div', {}, {}, [
+      dom.h('span', {}, {}, [dom.hText('span')])
+    ]);
+    const el = div();
+
+    expect(dom.textContent(el)).to.equal('span');
+
+    const replaceSpan = dom.renderR(el.firstChild);
+
+    function foo() {
+      return dom.createText('Foo');
+    }
+
+    const res = replaceSpan(foo);
+    expect(dom.textContent(el)).to.equal('Foo');
   });
 
 });

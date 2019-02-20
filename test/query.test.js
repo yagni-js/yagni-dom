@@ -109,13 +109,13 @@ describe('query()', function () {
   before(function () {
 
     const tree = dom.h('div', {id: 'body'}, {}, [
-      dom.h('div', {id: 'header'}, {}, ['Header']),
-      dom.h('div', {id: 'content', 'class': 'foo baz bar'}, {}, ['Content']),
-      dom.h('div', {id: 'footer', 'data-foo': '42'}, {}, ['Footer']),
+      dom.h('div', {id: 'header'}, {}, [dom.hText('Header')]),
+      dom.h('div', {id: 'content', 'class': 'foo baz bar'}, {}, [dom.hText('Content')]),
+      dom.h('div', {id: 'footer', 'data-foo': '42'}, {}, [dom.hText('Footer')]),
       dom.h('div', {id: 'popup'}, {}, [
         dom.h('p', {}, {}, [
-          dom.h('span', {}, {}, ['popup']),
-          dom.h('span', {}, {}, ['popup'])
+          dom.h('span', {}, {}, [dom.hText('popup')]),
+          dom.h('span', {}, {}, [dom.hText('popup')])
         ]),
       ])
     ]);
@@ -213,8 +213,8 @@ describe('queryFirst()', function () {
 
     const tree = dom.h('div', {id: 'body'}, {}, [
         dom.h('p', {}, {}, [
-          dom.h('span', {}, {}, ['foo']),
-          dom.h('span', {}, {}, ['baz'])
+          dom.h('span', {}, {}, [dom.hText('foo')]),
+          dom.h('span', {}, {}, [dom.hText('baz')])
       ])
     ]);
 
