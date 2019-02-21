@@ -1,5 +1,5 @@
 
-import { always, ifElse, isArray, lazy, pipe, reduce } from '@yagni-js/yagni';
+import { ifElse, isArray, lazy, pipe, reduce } from '@yagni-js/yagni';
 
 import { setAttrs } from './attrs.js';
 import { createElement, createSVGElement, createText } from './create.js';
@@ -60,7 +60,7 @@ function createChildren(children) {
  * which should be called later to create dom element.
  *
  * Uses `createElement`, `setAttrs` and `setProps` to create an element and
- * set it's attributes and properties.
+ * set its attributes and properties.
  *
  * @category Hyperscript
  *
@@ -112,7 +112,7 @@ export function h(tagName, attrs, props, children) {
  * which should be called later to create svg dom element.
  *
  * Uses `createSVGElement`, `setAttrs` and `setProps` to create an element and
- * set it's attributes and properties.
+ * set its attributes and properties.
  *
  * @category Hyperscript
  *
