@@ -63,9 +63,7 @@ describe('matches()', function () {
 
 describe('closest()', function () {
 
-  // FIXME jsdom does not support Element.closest yet
-  // https://github.com/tmpvar/jsdom/pull/1951
-  it.skip('returns proper closest element or null', function () {
+  it('returns proper closest element or null', function () {
 
     const div = dom.createElement('div');
     const ul = dom.createElement('ul');
@@ -111,13 +109,13 @@ describe('query()', function () {
   before(function () {
 
     const tree = dom.h('div', {id: 'body'}, {}, [
-      dom.h('div', {id: 'header'}, {}, ['Header']),
-      dom.h('div', {id: 'content', 'class': 'foo baz bar'}, {}, ['Content']),
-      dom.h('div', {id: 'footer', 'data-foo': '42'}, {}, ['Footer']),
+      dom.h('div', {id: 'header'}, {}, [dom.hText('Header')]),
+      dom.h('div', {id: 'content', 'class': 'foo baz bar'}, {}, [dom.hText('Content')]),
+      dom.h('div', {id: 'footer', 'data-foo': '42'}, {}, [dom.hText('Footer')]),
       dom.h('div', {id: 'popup'}, {}, [
         dom.h('p', {}, {}, [
-          dom.h('span', {}, {}, ['popup']),
-          dom.h('span', {}, {}, ['popup'])
+          dom.h('span', {}, {}, [dom.hText('popup')]),
+          dom.h('span', {}, {}, [dom.hText('popup')])
         ]),
       ])
     ]);
@@ -139,6 +137,8 @@ describe('query()', function () {
 
     expect(header).to.be.a('htmldivelement');
     expect(dom.textContent(header)).to.equal('Header');
+
+    expect(getHeader(header)).to.eql(header);
 
   });
 
@@ -213,8 +213,8 @@ describe('queryFirst()', function () {
 
     const tree = dom.h('div', {id: 'body'}, {}, [
         dom.h('p', {}, {}, [
-          dom.h('span', {}, {}, ['foo']),
-          dom.h('span', {}, {}, ['baz'])
+          dom.h('span', {}, {}, [dom.hText('foo')]),
+          dom.h('span', {}, {}, [dom.hText('baz')])
       ])
     ]);
 
@@ -236,6 +236,26 @@ describe('queryFirst()', function () {
 
     expect(span).to.be.a('htmlspanelement');
     expect(dom.textContent(span)).to.equal('foo');
+
+  });
+
+  it('should return undefined for not found element', function () {
+
+    const getLink = dom.queryFirst('a');
+
+    const link = getLink(root);
+
+    expect(link).to.be.undefined;
+
+  });
+
+  it('should return null for not found element queried by id', function () {
+
+    const getLink = dom.queryFirst('#first');
+
+    const link = getLink(root);
+
+    expect(link).to.be.null;
 
   });
 

@@ -161,6 +161,36 @@ describe('remove()', function () {
 });
 
 
+describe('removeChild()', function () {
+
+  it('should remove child', function () {
+
+    const ul = dom.createElement('ul');
+    const li1 = dom.createElement('li');
+    const li2 = dom.createElement('li');
+    const li3 = dom.createElement('li');
+
+    ul.appendChild(li1);
+    ul.appendChild(li2);
+    ul.appendChild(li3);
+
+    expect(dom.parent(li1)).to.equal(ul);
+    expect(dom.parent(li2)).to.equal(ul);
+    expect(dom.parent(li3)).to.equal(ul);
+
+    const ret = dom.removeChild(ul, li2);
+
+    expect(ret).to.equal(ul);
+
+    expect(dom.parent(li1)).to.equal(ul);
+    expect(dom.parent(li2)).to.be.null;
+    expect(dom.parent(li3)).to.equal(ul);
+
+  });
+
+});
+
+
 describe('removeChildren()', function () {
 
   it('should remove all children', function () {

@@ -46,6 +46,27 @@ describe('setProp()', function () {
 });
 
 
+describe('setPropTo()', function () {
+
+  it('sets property value and returns element', function () {
+
+    const inp = dom.createElement('input');
+
+    const setInpProp = dom.setPropTo(inp);
+
+    expect(setInpProp).to.be.a('function');
+    expect(inp.name).to.equal('');
+
+    const ret = setInpProp('name', 'foo');
+
+    expect(ret).to.equal(inp);
+    expect(inp.name).to.equal('foo');
+
+  });
+
+});
+
+
 describe('setProps()', function () {
 
   it('sets properties values in bulk and returns element', function () {

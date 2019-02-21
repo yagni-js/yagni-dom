@@ -53,6 +53,27 @@ describe('setData()', function () {
 });
 
 
+describe('setDataTo()', function () {
+
+  it('sets dataset property value and returns element', function () {
+
+    const div = dom.createElement('div');
+
+    const setDivData = dom.setDataTo(div);
+
+    expect(setDivData).to.be.a('function');
+    expect(div.dataset.fooBaz).to.be.undefined;
+
+    const ret = setDivData('foo-baz', 'foo');
+
+    expect(ret).to.equal(div);
+    expect(div.dataset.fooBaz).to.equal('foo');
+
+  });
+
+});
+
+
 describe('setDatas()', function () {
 
   it('sets dataset properties values in bulk and returns element', function () {
