@@ -80,12 +80,12 @@ function createChildren(children) {
  *
  * @example
  *
- *     import {h} from '@yagni-js/yagni-dom';
+ *     import {h, hText} from '@yagni-js/yagni-dom';
  *
  *     const list = h('ul', {'class': 'list', 'data-foo': 'baz', {}, [
- *       h('li', {'class': 'list-item'}, {}, ['Foo']),
- *       h('li', {'class': 'list-item'}, {}, ['Baz']),
- *       h('li', {'class': 'list-item'}, {}, ['Bar'])
+ *       h('li', {'class': 'list-item'}, {}, [hText('Foo')]),
+ *       h('li', {'class': 'list-item'}, {}, [hText('Baz')]),
+ *       h('li', {'class': 'list-item'}, {}, [hText('Bar')])
  *     ]);
  *
  *     const el = list();
@@ -256,13 +256,13 @@ export function render(target) {
  *
  * @example
  *
- *     import {h, renderAfter} from '@yagni-js/yagni-dom';
+ *     import {h, hText, renderAfter} from '@yagni-js/yagni-dom';
  *
  *     const list = h('ul', {'class': 'list', 'data-foo': 'baz', {}, [
- *       h('li', {'class': 'list-item'}, {}, ['Foo']),
- *       h('li', {'class': 'list-item'}, {}, ['Baz'])
+ *       h('li', {'class': 'list-item'}, {}, [hText('Foo')]),
+ *       h('li', {'class': 'list-item'}, {}, [hText('Baz')])
  *     ]);
- *     const item = h('li', {'class': 'list-item'}, {}, ['Bar']);
+ *     const item = h('li', {'class': 'list-item'}, {}, [hText('Bar')]);
  *
  *     const el = list();
  *     // => <ul class="list" data-foo="baz">
@@ -317,13 +317,13 @@ export function renderAfter(target) {
  *
  * @example
  *
- *     import {h, renderC} from '@yagni-js/yagni-dom';
+ *     import {h, hText, renderC} from '@yagni-js/yagni-dom';
  *
  *     const list = h('ul', {'class': 'list', 'data-foo': 'baz', {}, [
- *       h('li', {'class': 'list-item'}, {}, ['Foo']),
- *       h('li', {'class': 'list-item'}, {}, ['Baz'])
+ *       h('li', {'class': 'list-item'}, {}, [hText('Foo')]),
+ *       h('li', {'class': 'list-item'}, {}, [hText('Baz')])
  *     ]);
- *     const item = h('li', {'class': 'list-item'}, {}, ['Bar']);
+ *     const item = h('li', {'class': 'list-item'}, {}, [hText('Bar')]);
  *
  *     const el = list();
  *     // => <ul class="list" data-foo="baz">
@@ -375,13 +375,13 @@ export function renderC(target) {
  *
  * @example
  *
- *     import {h, renderR} from '@yagni-js/yagni-dom';
+ *     import {h, hText, renderR} from '@yagni-js/yagni-dom';
  *
  *     const list = h('ul', {'class': 'list', 'data-foo': 'baz', {}, [
- *       h('li', {'class': 'list-item'}, {}, ['Foo']),
- *       h('li', {'class': 'list-item'}, {}, ['Baz'])
+ *       h('li', {'class': 'list-item'}, {}, [hText('Foo')]),
+ *       h('li', {'class': 'list-item'}, {}, [hText('Baz')])
  *     ]);
- *     const item = h('li', {'class': 'list-item'}, {}, ['Bar']);
+ *     const item = h('li', {'class': 'list-item'}, {}, [hText('Bar')]);
  *
  *     const el = list();
  *     // => <ul class="list" data-foo="baz">

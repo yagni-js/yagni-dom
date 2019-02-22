@@ -304,7 +304,7 @@ export const stopPropagation = tap(
  *
  * @example
  *
- *     import {h, hToDOM, eventHandler, delegate} from '@yagni-js/yagni-dom';
+ *     import {h, hText, eventHandler, delegate} from '@yagni-js/yagni-dom';
  *
  *     // @param {Object}  evt
  *     // @param {Event}   evt.originalEvent original DOM event
@@ -316,11 +316,11 @@ export const stopPropagation = tap(
  *       // some code to handle remove
  *     }
  *
- *     const elSpec = h('div', {}, {}, [
- *       h('a', {class: 'add'}, {}, ['Add']),
- *       h('a', {class: 'remove'}, {}, ['Remove'])
+ *     const spec = h('div', {}, {}, [
+ *       h('a', {class: 'add'}, {}, [hText('Add')]),
+ *       h('a', {class: 'remove'}, {}, [hText('Remove')])
  *     ]);
- *     const el = hToDOM(elSpec);
+ *     const el = spec();
  *
  *     const events = [
  *       eventHandler('click', '.add', addHandler),
@@ -358,7 +358,7 @@ export function delegate(events) {
  *
  * @example
  *
- *     import {h, hToDOM, eventHandler, delegate, undelegate} from '@yagni-js/yagni-dom';
+ *     import {h, hText, eventHandler, delegate, undelegate} from '@yagni-js/yagni-dom';
  *
  *     // @param {Object}  evt
  *     // @param {Event}   evt.originalEvent original DOM event
@@ -370,11 +370,11 @@ export function delegate(events) {
  *       // some code to handle remove
  *     }
  *
- *     const elSpec = h('div', {}, {}, [
- *       h('a', {class: 'add'}, {}, ['Add']),
- *       h('a', {class: 'remove'}, {}, ['Remove'])
+ *     const spec = h('div', {}, {}, [
+ *       h('a', {class: 'add'}, {}, [hText('Add')]),
+ *       h('a', {class: 'remove'}, {}, [hText('Remove')])
  *     ]);
- *     const el = hToDOM(elSpec);
+ *     const el = spec();
  *
  *     const events = [
  *       eventHandler('click', '.add', addHandler),

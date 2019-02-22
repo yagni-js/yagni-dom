@@ -1,6 +1,14 @@
 # Changelog
 
 
+## 1.1.0 (2019-02-22)
+
+### Changes
+
+- [*] fix readme and jsdoc examples - remove `hToDOM()` function mentions, add
+    `hText()` function to examples
+
+
 ## 1.0.0 (2019-02-21)
 
 ### Breaking changes

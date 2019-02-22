@@ -44,10 +44,10 @@ function classListOp(method) {
  *
  * @example
  *
- *     import {createElement, addClass, hasClass} from '@yagni-js/yagni-dom';
+ *     import {h, hText, createElement, addClass, hasClass} from '@yagni-js/yagni-dom';
  *
- *     const spec = h('a', {}, {}, ['Foo link']);
- *     const el = hToDOM(spec);
+ *     const spec = h('a', {}, {}, [hText('Foo link')]);
+ *     const el = spec();
  *
  *     const addFooClass = addClass('foo');
  *     const hasFooClass = hasClass('foo');
@@ -78,10 +78,10 @@ export const addClass = classListOp('add');
  *
  * @example
  *
- *     import {h, hToDOM, removeClass, hasClass} from '@yagni-js/yagni-dom';
+ *     import {h, hText, removeClass, hasClass} from '@yagni-js/yagni-dom';
  *
- *     const spec = h('a', {"class": "foo"}, {}, ['Foo link']);
- *     const el = hToDOM(spec);
+ *     const spec = h('a', {"class": "foo"}, {}, [hText('Foo link')]);
+ *     const el = spec();
  *
  *     const removeFooClass = removeClass('foo');
  *     const hasFooClass = hasClass('foo');
@@ -112,10 +112,10 @@ export const removeClass = classListOp('remove');
  *
  * @example
  *
- *     import {h, hToDOM, removeClass, hasClass} from '@yagni-js/yagni-dom';
+ *     import {h, hText, removeClass, hasClass} from '@yagni-js/yagni-dom';
  *
- *     const spec = h('a', {"class": "foo"}, {}, ['Foo link']);
- *     const el = hToDOM(spec);
+ *     const spec = h('a', {"class": "foo"}, {}, [hText('Foo link')]);
+ *     const el = spec();
  *
  *     const toggleFooClass = toggleClass('foo');
  *     const hasFooClass = hasClass('foo');
@@ -149,10 +149,10 @@ export const toggleClass = classListOp('toggle');
  *
  * @example
  *
- *     import {h, hToDOM, hasClass} from '@yagni-js/yagni-dom';
+ *     import {h, hText, hasClass} from '@yagni-js/yagni-dom';
  *
- *     const spec = h('a', {"class": "foo"}, {}, ['Foo link']);
- *     const el = hToDOM(spec);
+ *     const spec = h('a', {"class": "foo"}, {}, [hText('Foo link')]);
+ *     const el = spec();
  *
  *     const hasFooClass = hasClass('foo');
  *     const hasBazClass = hasClass('baz');
