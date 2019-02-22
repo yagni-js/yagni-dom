@@ -47,7 +47,7 @@ ES6 module usage:
 
 import * as dom from '@yagni-js/yagni-dom';
 // or
-import { h, hSVG, hToDOM } from '@yagni-js/yagni-dom';
+import { h, hSVG, hText } from '@yagni-js/yagni-dom';
 
 ```
 
@@ -65,26 +65,25 @@ Here is an example of library usage:
 ```javascript
 
 import { pipe } from '@yagni-js/yagni';
-import { h, hToDOM, appendTo, firstChild } from '@yagni-js/yagni-dom';
+import { h, hText, render, firstChild } from '@yagni-js/yagni-dom';
 
 const doc = window.document;
 
-const appendToBody = pipe([
-  hToDOM,
-  appendTo(doc.body),
+const renderToBody = pipe([
+  render(doc.body),
   firstChild
 ]);
 
 const layout = h('div', {class: 'root'}, {}, [
-  h('div', {class: 'header'}, {}, ['Header']),
+  h('div', {class: 'header'}, {}, [hText('Header')]),
   h('div', {class: 'main'}, {}, [
-    h('div', {class: 'sidebar'}, {}, ['Sidebar']),
-    h('div', {class: 'content'}, {}, ['Content'])
+    h('div', {class: 'sidebar'}, {}, [hText('Sidebar')]),
+    h('div', {class: 'content'}, {}, [hText('Content')])
   ]),
-  h('div', {class: 'footer'}, {}, ['Footer'])
+  h('div', {class: 'footer'}, {}, [hText('Footer')])
 ]);
 
-const el = appendToBody(layout);
+const el = renderToBody(layout);
 
 ```
 
@@ -132,6 +131,6 @@ doc.body.appendChild(root);
 [eslint-plugin-fp]: https://github.com/jfmengels/eslint-plugin-fp
 [eslint-plugin-better]: https://github.com/idmitriev/eslint-plugin-better
 [es6-modules]: https://hacks.mozilla.org/2015/08/es6-in-depth-modules/
-[yagni]: https://github.com/ysegorov/yagni
+[yagni]: https://github.com/yagni-js/yagni
 [rollup]: https://rollupjs.org/
 [unlicense]: http://unlicense.org/

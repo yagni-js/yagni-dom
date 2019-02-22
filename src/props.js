@@ -20,10 +20,10 @@ import { mutate, pick, reduceObj } from '@yagni-js/yagni';
  *
  * @example
  *
- *     import {h, hToDOM, getProp} from '@yagni-js/yagni-dom';
+ *     import {h, hText, getProp} from '@yagni-js/yagni-dom';
  *
- *     const spec = h('a', {}, {foo: 'Foo'}, ['Foo link']);
- *     const el = hToDOM(spec);
+ *     const spec = h('a', {}, {foo: 'Foo'}, [hText('Foo link')]);
+ *     const el = spec();
  *
  *     const getFooProp = getProp('foo');
  *     const getBazProp = getProp('baz');
@@ -69,10 +69,10 @@ const setProperty = mutate;
  *
  * @example
  *
- *     import {h, hToDOM, getProp, setProp} from '@yagni-js/yagni-dom';
+ *     import {h, hText, getProp, setProp} from '@yagni-js/yagni-dom';
  *
- *     const spec = h('a', {}, {foo: 'Foo'}, ['Foo link']);
- *     const el = hToDOM(spec);
+ *     const spec = h('a', {}, {foo: 'Foo'}, [hText('Foo link')]);
+ *     const el = spec();
  *
  *     const getFooProp = getProp('foo');
  *     const setFooProp = setProp('foo', 'Baz');
@@ -107,10 +107,10 @@ export function setProp(name, value) {
  *
  * @example
  *
- *     import {h, hToDOM, getProp, setPropTo} from '@yagni-js/yagni-dom';
+ *     import {h, hText, getProp, setPropTo} from '@yagni-js/yagni-dom';
  *
- *     const spec = h('a', {}, {foo: 'Foo'}, ['Foo link']);
- *     const el = hToDOM(spec);
+ *     const spec = h('a', {}, {foo: 'Foo'}, [hText('Foo link')]);
+ *     const el = spec();
  *
  *     const getFooProp = getProp('foo');
  *     const setElProp = setPropTo(el);
@@ -151,10 +151,10 @@ export function setPropTo(el) {
  *
  * @example
  *
- *     import {h, hToDOM, getProp, setProps} from '@yagni-js/yagni-dom';
+ *     import {h, hText, getProp, setProps} from '@yagni-js/yagni-dom';
  *
- *     const spec = h('a', {}, {}, ['Foo link']);
- *     const el = hToDOM(spec);
+ *     const spec = h('a', {}, {}, [hText('Foo link')]);
+ *     const el = spec();
  *
  *     const getFoo = getProp('foo');
  *     const getBaz = getProp('baz');
@@ -184,10 +184,10 @@ export const setProps = reduceObj(setProperty);
  *
  * @example
  *
- *     import {h, hToDOM, textContent} from '@yagni-js/yagni-dom';
+ *     import {h, hText, textContent} from '@yagni-js/yagni-dom';
  *
- *     const spec = h('a', {}, {}, ['Foo link']);
- *     const el = hToDOM(spec);
+ *     const spec = h('a', {}, {}, [hText('Foo link')]);
+ *     const el = spec();
  *
  *     const text = textContent(el);  // => 'Foo link'
  *

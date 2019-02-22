@@ -21,10 +21,10 @@ import { isDefined, reduceObj, tap } from '@yagni-js/yagni';
  *
  * @example
  *
- *     import {h, hToDOM, getAttr} from '@yagni-js/yagni-dom';
+ *     import {h, hText, getAttr} from '@yagni-js/yagni-dom';
  *
- *     const spec = h('a', {title: 'Foo'}, {}, ['Foo link']);
- *     const el = hToDOM(spec);
+ *     const spec = h('a', {title: 'Foo'}, {}, [hText('Foo link')]);
+ *     const el = spec();
  *
  *     const getTitle = getAttr('title');
  *     const getHref = getAttr('href');
@@ -83,10 +83,10 @@ function setAttribute(el, name, value) {
  *
  * @example
  *
- *     import {h, hToDOM, getAttr, setAttr} from '@yagni-js/yagni-dom';
+ *     import {h, hText, getAttr, setAttr} from '@yagni-js/yagni-dom';
  *
- *     const spec = h('a', {title: 'Foo'}, {}, ['Foo link']);
- *     const el = hToDOM(spec);
+ *     const spec = h('a', {title: 'Foo'}, {}, [hText('Foo link')]);
+ *     const el = spec();
  *
  *     const getHref = getAttr('href');
  *     const setHrefToTop = setAttr('href', '#top');
@@ -124,10 +124,10 @@ export function setAttr(name, value) {
  *
  * @example
  *
- *     import {h, hToDOM, getAttr, setAttrTo} from '@yagni-js/yagni-dom';
+ *     import {h, hText, getAttr, setAttrTo} from '@yagni-js/yagni-dom';
  *
- *     const spec = h('a', {title: 'Foo'}, {}, ['Foo link']);
- *     const el = hToDOM(spec);
+ *     const spec = h('a', {title: 'Foo'}, {}, [hText('Foo link')]);
+ *     const el = spec();
  *
  *     const getHref = getAttr('href');
  *     const setElAttr = setAttrTo(el);
@@ -172,10 +172,10 @@ export function setAttrTo(el) {
  *
  * @example
  *
- *     import {h, hToDOM, getAttr, setAttrs} from '@yagni-js/yagni-dom';
+ *     import {h, hText, getAttr, setAttrs} from '@yagni-js/yagni-dom';
  *
- *     const spec = h('a', {}, {}, ['Foo link']);
- *     const el = hToDOM(spec);
+ *     const spec = h('a', {}, {}, [hText('Foo link')]);
+ *     const el = spec();
  *
  *     const getHref = getAttr('href');
  *     const getTitle = getAttr('title');
@@ -208,13 +208,13 @@ export const setAttrs = reduceObj(setAttribute);
  *
  * @example
  *
- *     import {h, hToDOM, getAttr, removeAttr} from '@yagni-js/yagni-dom';
+ *     import {h, hText, getAttr, removeAttr} from '@yagni-js/yagni-dom';
  *
- *     const spec = h('a', {title: 'Foo', href: '#top'}, {}, ['Foo link']);
+ *     const spec = h('a', {title: 'Foo', href: '#top'}, {}, [hText('Foo link')]);
  *
  *     const removeTitle = remoteAttr('title');
  *
- *     const el = hToDOM(spec);
+ *     const el = spec();
  *     // => <a href="#top" title="Foo">Foo link</a>
  *
  *     const el2 = removeTitle(el);

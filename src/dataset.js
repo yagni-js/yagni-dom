@@ -19,10 +19,10 @@ import { camelize, mutate, pickPath, reduceObj } from '@yagni-js/yagni';
  *
  * @example
  *
- *     import {h, hToDOM, getData} from '@yagni-js/yagni-dom';
+ *     import {h, hText, getData} from '@yagni-js/yagni-dom';
  *
- *     const spec = h('a', {"data-href": "#top", "data-foo-baz": "bar"}, {}, ['Foo link']);
- *     const el = hToDOM(spec);
+ *     const spec = h('a', {"data-href": "#top", "data-foo-baz": "bar"}, {}, [hText('Foo link')]);
+ *     const el = spec();
  *
  *     const getHref = getData('href');
  *     const getFooBaz = getData('foo-baz');
@@ -78,10 +78,10 @@ function setDataset(el, name, value) {
  *
  * @example
  *
- *     import {h, hToDOM, getData, setData} from '@yagni-js/yagni-dom';
+ *     import {h, hText, getData, setData} from '@yagni-js/yagni-dom';
  *
- *     const spec = h('a', {"data-foo": "foo"}, {}, ['Foo link']);
- *     const el = hToDOM(spec);
+ *     const spec = h('a', {"data-foo": "foo"}, {}, [hText('Foo link')]);
+ *     const el = spec();
  *
  *     const getFoo = getData('foo');
  *     const setFoo = setData('foo', 'baz');
@@ -119,10 +119,10 @@ export function setData(name, value) {
  *
  * @example
  *
- *     import {h, hToDOM, getData, setDataTo} from '@yagni-js/yagni-dom';
+ *     import {h, hText, getData, setDataTo} from '@yagni-js/yagni-dom';
  *
- *     const spec = h('a', {"data-foo": "foo"}, {}, ['Foo link']);
- *     const el = hToDOM(spec);
+ *     const spec = h('a', {"data-foo": "foo"}, {}, [hText('Foo link')]);
+ *     const el = spec();
  *
  *     const getFoo = getData('foo');
  *     const setElData = setDataTo(el);
@@ -163,10 +163,10 @@ export function setDataTo(el) {
  *
  * @example
  *
- *     import {h, hToDOM, getData, setDatas} from '@yagni-js/yagni-dom';
+ *     import {h, hText, getData, setDatas} from '@yagni-js/yagni-dom';
  *
- *     const spec = h('a', {}, {}, ['Foo link']);
- *     const el = hToDOM(spec);
+ *     const spec = h('a', {}, {}, [hText('Foo link')]);
+ *     const el = spec();
  *
  *     const getFoo = getData('foo');
  *     const getBaz = getData('baz');
