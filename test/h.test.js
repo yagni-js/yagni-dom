@@ -3,6 +3,26 @@ const expect = require('chai').expect;
 const dom = require('..');
 
 
+describe('hSkip()', function () {
+
+  it('is a function to call', function () {
+
+    expect(dom.hSkip).to.be.a('function');
+
+  });
+
+  it('always returns string "SKIP"', function () {
+
+      expect(dom.hSkip()).to.equal('SKIP');
+      expect(dom.hSkip()).to.equal('SKIP');
+      expect(dom.hSkip()).to.equal('SKIP');
+      expect(dom.hSkip()).to.equal('SKIP');
+      expect(dom.hSkip()).to.equal('SKIP');
+
+  });
+
+});
+
 describe('h()', function () {
 
   it('returns factory function to create element', function () {
@@ -48,6 +68,25 @@ describe('h()', function () {
 
     expect(div.lastChild).to.be.a('htmlparagraphelement');
     expect(div.lastChild.textContent).to.equal('Baz');
+
+  });
+
+  it('creates empty text node for empty string', function () {
+
+    const div = dom.h('div', {}, {}, [dom.hText('')]);
+    const el = div();
+
+    expect(el.firstChild).to.be.a('text');
+    expect(el.firstChild.data).to.equal('');
+
+  });
+
+  it('does not create node for skip marker', function () {
+
+    const div = dom.h('div', {}, {}, [dom.hSkip()]);
+    const el = div();
+
+    expect(el.firstChild).to.be.null;
 
   });
 
