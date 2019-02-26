@@ -1,6 +1,16 @@
 # Changelog
 
 
+## 2.0.0 (2019-02-26)
+
+### Changes
+
+- [+] add `hSkip()` function to indicate node to skip while creating children
+    nodes in `h()` and `hSVG()` functions
+- [*] deprecate `@yagni-js/yagni-dom@1.0.0` and `@yagni-js/yagni-dom@1.1.0` in
+    favour of `@yagni-js/yagni-dom@2.0.0`
+
+
 ## 1.1.0 (2019-02-22)
 
 ### Changes
