@@ -1,10 +1,59 @@
 
-import { ifElse, isArray, lazy, pipe, reduce } from '@yagni-js/yagni';
+import { always, equals, ifElse, isArray, lazy, pipe, reduce } from '@yagni-js/yagni';
 
 import { setAttrs } from './attrs.js';
 import { createElement, createSVGElement, createText } from './create.js';
 import { setProps } from './props.js';
 import { appendAfter, removeChildren, replace } from './mutate.js';
+
+
+/**
+ * Marker to skip child node creation if necessary.
+ *
+ * @private
+ *
+ */
+const skipMarker = 'SKIP';
+
+
+/**
+ * Takes some value as an arguments, compares it to skip marker and returns
+ * `true` if value equals to skip marker or `false` otherwise.
+ *
+ * @private
+ * @function
+ *
+ * @param {*} smth some value to test equality to skip marker
+ * @returns {Boolean} `true` if `smth` equals to skip marker or
+ * `false` otherwise
+ *
+ */
+const isSkipMarker = equals(skipMarker);
+
+
+/**
+ * Function to always return skip marker on call.
+ *
+ * Is in use in `@yagni-js/yagni-parser` in html to `@yagni-js/yagni-dom`
+ * conversion.
+ *
+ * @category Hyperscript
+ *
+ * @returns {String} skip marker to indicate child node should not be created
+ * while creating children nodes
+ *
+ * @example
+ *
+ *     import {h, hText, hSkip} from '@yagni-js/yagni-dom';
+ *
+ *     const div1 = h('div', {}, {}, [hSkip()]);
+ *     const div2 = h('div', {}, {}, [hText('')]);
+ *
+ *     const el1 = div1();  // => el.firstChild is null
+ *     const el2 = div2();  // => el.firstChild is TextNode
+ *
+ */
+export const hSkip = always(skipMarker);
 
 
 /**
@@ -46,7 +95,8 @@ function createChildren(children) {
   return function _createChildren(target) {
     return children.reduce(
       function __createChildren(el, item) {
-        return isArray(item) ? item.reduce(__createChildren, el) : createChild(el, item);
+        return isArray(item) ? item.reduce(__createChildren, el) : (
+          isSkipMarker(item) ? el : createChild(el, item));
       },
       target
     );
