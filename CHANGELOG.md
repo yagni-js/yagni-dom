@@ -1,6 +1,11 @@
 # Changelog
 
 
+## 2.1.0 (2019-03-23)
+
+- [*] updated dependencies
+
+
 ## 2.0.0 (2019-02-26)
 
 ### Changes
