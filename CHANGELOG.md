@@ -1,6 +1,15 @@
 # Changelog
 
 
+## 2.2.0 (2019-07-19)
+
+- [*] peer dependency has been updated: @yagni-js/yagni@0.7.1
+- [*] dev dependencies have been updated: @yagni-js/yagni@0.7.1, eslint@6.0.1,
+    eslint-plugin-import@2.18.1, jsdom@15.1.1, mocha@6.2.0, rollup@1.17.0,
+    rollup-plugin-eslint@7.0.0
+- [*] license file has been added to distribution tarball
+
+
 ## 2.1.0 (2019-03-23)
 
 - [*] updated dependencies
