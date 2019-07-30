@@ -309,27 +309,27 @@ function serializeFormReducer(acc, el) {
  *
  * @example
  *
- *     import {serializeForm, h} from '@yagni-js/yagni-dom';
+ *     import {serializeForm, h, hText} from '@yagni-js/yagni-dom';
  *
- *     const form = dom.h('form', {}, {}, [
- *       dom.h('input', {type: 'text', name: 'aaa', value: ''}, {}, []),
- *       dom.h('input', {type: 'text', name: 'bbb', value: 'bbb'}, {}, []),
- *       dom.h('input', {type: 'password', name: 'ccc', value: 'ccc'}, {}, []),
- *       dom.h('input', {type: 'hidden', name: 'ddd', value: 'ddd'}, {}, []),
- *       dom.h('input', {type: 'file', name: 'eee', value: 'eee'}, {}, []),
- *       dom.h('input', {type: 'checkbox', name: 'fff'}, {}, []),
- *       dom.h('input', {type: 'checkbox', name: 'ggg', checked: 'checked'}, {}, []),
- *       dom.h('input', {type: 'radio', name: 'hhh', value: 'h'}, {}, []),
- *       dom.h('input', {type: 'radio', name: 'hhh', value: 'hh'}, {}, []),
- *       dom.h('input', {type: 'radio', name: 'hhh', checked: 'checked', value: 'hhh'}, {}, []),
- *       dom.h('input', {type: 'text', name: 'iii', value: 'iii', disabled: 'disabled'}, {}, []),
- *       dom.h('input', {name: 'jjj', value: 'jjj'}, {}, []),
- *       dom.h('textarea', {name: 'kkk'}, {}, [dom.hText('kkk')]),
- *       dom.h('select', {name: 'lll'}, {}, [
- *         dom.h('option', {value: 'foo'}, {}, [dom.hText('foo')]),
- *         dom.h('option', {value: 'baz'}, {}, [dom.hText('baz')]),
- *         dom.h('option', {value: 'lll'}, {selected: true}, [dom.hText('lll')]),
- *         dom.h('option', {value: 'bar'}, {}, [dom.hText('bar')])
+ *     const form = h('form', {}, {}, [
+ *       h('input', {type: 'text', name: 'aaa', value: ''}, {}, []),
+ *       h('input', {type: 'text', name: 'bbb', value: 'bbb'}, {}, []),
+ *       h('input', {type: 'password', name: 'ccc', value: 'ccc'}, {}, []),
+ *       h('input', {type: 'hidden', name: 'ddd', value: 'ddd'}, {}, []),
+ *       h('input', {type: 'file', name: 'eee', value: 'eee'}, {}, []),
+ *       h('input', {type: 'checkbox', name: 'fff'}, {}, []),
+ *       h('input', {type: 'checkbox', name: 'ggg', checked: 'checked'}, {}, []),
+ *       h('input', {type: 'radio', name: 'hhh', value: 'h'}, {}, []),
+ *       h('input', {type: 'radio', name: 'hhh', value: 'hh'}, {}, []),
+ *       h('input', {type: 'radio', name: 'hhh', checked: 'checked', value: 'hhh'}, {}, []),
+ *       h('input', {type: 'text', name: 'iii', value: 'iii', disabled: 'disabled'}, {}, []),
+ *       h('input', {name: 'jjj', value: 'jjj'}, {}, []),
+ *       h('textarea', {name: 'kkk'}, {}, [hText('kkk')]),
+ *       h('select', {name: 'lll'}, {}, [
+ *         h('option', {value: 'foo'}, {}, [hText('foo')]),
+ *         h('option', {value: 'baz'}, {}, [hText('baz')]),
+ *         h('option', {value: 'lll'}, {selected: true}, [hText('lll')]),
+ *         h('option', {value: 'bar'}, {}, [hText('bar')])
  *       ])
  *     ]);
  *
