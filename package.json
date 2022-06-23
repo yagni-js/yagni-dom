@@ -38,7 +38,7 @@
     "eslint-plugin-better": "^0.1.5",
     "eslint-plugin-fp": "^2.3.0",
     "eslint-plugin-import": "^2.18.1",
-    "jsdom": "^15.1.1",
+    "jsdom": "^16.5.0",
     "jsdom-global": "^3.0.2",
     "mocha": "^6.2.0",
     "rollup": "^1.17.0",
